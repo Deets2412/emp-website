@@ -14,16 +14,28 @@ export function QuizCTA() {
               What&apos;s your emotional relationship with money?
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-navy-300">
-              Take our free 3-minute quiz to discover your Money Persona — the emotional
-              pattern that drives every financial decision you make. Get personalised
-              episode recommendations based on your results.
+              Everyone has a dominant emotional pattern with money. Understanding yours
+              is the first step in the ALP framework — and the key to unlocking
+              second-order change.
             </p>
-            <Link
-              href="/quiz"
-              className="mt-8 inline-flex items-center justify-center rounded-lg bg-gold-500 px-6 py-3.5 text-base font-semibold text-navy-900 shadow-lg shadow-gold-500/20 transition-all hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/30"
-            >
-              Take the Free Quiz
-            </Link>
+            <p className="mt-3 text-sm text-navy-400">
+              In the Transformation Program, your learning path adapts to your persona
+              with custom content, tailored app prompts, and persona-specific community groups.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/quiz"
+                className="inline-flex items-center justify-center rounded-lg bg-gold-500 px-6 py-3.5 text-base font-semibold text-navy-900 shadow-lg shadow-gold-500/20 transition-all hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/30"
+              >
+                Take the Free Quiz
+              </Link>
+              <Link
+                href="/courses"
+                className="inline-flex items-center justify-center rounded-lg border border-navy-600 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-navy-500 hover:bg-navy-700/50"
+              >
+                Explore the Program
+              </Link>
+            </div>
           </div>
 
           {/* Persona Cards */}

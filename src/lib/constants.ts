@@ -1,7 +1,7 @@
 export const SITE_NAME = 'The Emotional Money Podcast'
-export const SITE_TAGLINE = 'Understand Your Relationship With Money'
+export const SITE_TAGLINE = 'Psychology-First Financial Transformation'
 export const SITE_DESCRIPTION =
-  'Explore the emotions that drive your financial decisions. Hosted by David & Emme — helping Australians understand why they feel the way they do about money.'
+  'The only Australian podcast using Affective Liminal Psychology to create lasting financial transformation. Hosted by David & Emme — change how you feel about money, and watch your financial life transform.'
 
 export const PERSONAS = {
   'balanced-builder': {
@@ -48,11 +48,20 @@ export const CONTENT_PILLARS = [
 export const NAV_LINKS = [
   { href: '/episodes', label: 'Episodes' },
   { href: '/quiz', label: 'Money Quiz' },
-  { href: '/resources', label: 'Free Resources' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/courses', label: 'Courses' },
+  { href: '/courses', label: 'Program' },
+  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/resources', label: 'Resources' },
   { href: '/about', label: 'About' },
 ] as const
+
+export const ALP_STAGES = [
+  { key: 'awareness', label: 'Awareness', weeks: '1-2', description: 'Excavate your money story' },
+  { key: 'examination', label: 'Examination', weeks: '3-4', description: 'Test your limiting beliefs' },
+  { key: 'embodiment', label: 'Embodiment', weeks: '5-7', description: 'Parts work, wound healing, somatic practice' },
+  { key: 'integration', label: 'Integration', weeks: '8-12', description: 'Values, relationships, habits, sustainability' },
+] as const
+
+export type ALPStage = typeof ALP_STAGES[number]['key']
 
 export const SOCIAL_LINKS = {
   youtube: '#',

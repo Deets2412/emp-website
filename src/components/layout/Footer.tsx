@@ -39,6 +39,30 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/alp-methodology"
+                  className="text-sm text-navy-300 transition-colors hover:text-gold-500"
+                >
+                  ALP Methodology
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/app"
+                  className="text-sm text-navy-300 transition-colors hover:text-gold-500"
+                >
+                  Companion App
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/corporate"
+                  className="text-sm text-navy-300 transition-colors hover:text-gold-500"
+                >
+                  Corporate
+                </Link>
+              </li>
             </ul>
           </div>
 

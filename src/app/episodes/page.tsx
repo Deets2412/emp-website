@@ -5,7 +5,7 @@ import { CONTENT_PILLARS } from '@/lib/constants'
 export const metadata: Metadata = {
   title: 'Episodes',
   description:
-    'Browse all episodes of The Emotional Money Podcast. Explore your emotional relationship with money through conversations about fear, joy, shame, and hope.',
+    'Browse all episodes of The Emotional Money Podcast. Each episode is tagged to ALP stages and Money Personas so you can find exactly what you need.',
 }
 
 // Placeholder episodes until Sanity is connected
@@ -20,6 +20,9 @@ const episodes = [
     pillarLabel: 'Emotional Deep Dives',
     duration: 38,
     publishedAt: '2026-07-01',
+    alpStage: 'Awareness',
+    bestFor: 'All Personas (especially Wounded Warrior)',
+    keyConcepts: ['Liminal space', 'Childhood programming', 'Money scripts'],
   },
   {
     slug: 'five-money-personas',
@@ -31,6 +34,9 @@ const episodes = [
     pillarLabel: 'Money Personalities',
     duration: 42,
     publishedAt: '2026-07-08',
+    alpStage: 'Awareness',
+    bestFor: 'All Personas',
+    keyConcepts: ['Money personas', 'Emotional patterns', 'Self-identification'],
   },
   {
     slug: 'breakup-spending',
@@ -42,6 +48,9 @@ const episodes = [
     pillarLabel: 'Real Life Money',
     duration: 35,
     publishedAt: '2026-07-15',
+    alpStage: 'Examination',
+    bestFor: 'Avoidant Free Spirit, Wounded Warrior',
+    keyConcepts: ['Emotional spending', 'Coping mechanisms', 'Trigger awareness'],
   },
   {
     slug: 'money-parts',
@@ -53,6 +62,9 @@ const episodes = [
     pillarLabel: 'Emotional Deep Dives',
     duration: 40,
     publishedAt: '2026-07-22',
+    alpStage: 'Embodiment',
+    bestFor: 'Perfectionist Analyzer, Anxious Protector',
+    keyConcepts: ['IFS', 'Parts work', 'Internal conflict'],
   },
   {
     slug: 'human-design-money',
@@ -64,6 +76,9 @@ const episodes = [
     pillarLabel: 'Money Personalities',
     duration: 44,
     publishedAt: '2026-07-29',
+    alpStage: 'Awareness',
+    bestFor: 'All Personas',
+    keyConcepts: ['Human design', 'Energy types', 'Decision-making styles'],
   },
   {
     slug: 'money-taboo',
@@ -75,8 +90,18 @@ const episodes = [
     pillarLabel: 'Generations & Culture',
     duration: 37,
     publishedAt: '2026-08-05',
+    alpStage: 'Integration',
+    bestFor: 'Anxious Protector, Balanced Builder',
+    keyConcepts: ['Financial secrecy', 'Money conversations', 'Cultural norms'],
   },
 ]
+
+const alpStageColors: Record<string, string> = {
+  Awareness: 'bg-blue-50 text-blue-700',
+  Examination: 'bg-purple-50 text-purple-700',
+  Embodiment: 'bg-rose-50 text-rose-700',
+  Integration: 'bg-emerald-50 text-emerald-700',
+}
 
 export default function EpisodesPage() {
   return (
@@ -87,7 +112,8 @@ export default function EpisodesPage() {
           <h1 className="text-4xl font-bold text-navy-800 sm:text-5xl">Episodes</h1>
           <p className="mt-4 text-lg text-navy-600">
             Every week, David and Emme explore a different dimension of your emotional
-            relationship with money. Honest conversations. Real insights. No jargon.
+            relationship with money. Each episode is tagged to ALP stages and Money Personas
+            so you can find exactly what you need.
           </p>
         </div>
 
@@ -126,14 +152,26 @@ export default function EpisodesPage() {
 
               {/* Content */}
               <div className="p-5">
-                <div className="mb-2 inline-flex rounded-full bg-gold-50 px-2.5 py-0.5 text-xs font-medium text-gold-700">
-                  {ep.pillarLabel}
+                {/* Tags row */}
+                <div className="mb-3 flex flex-wrap gap-1.5">
+                  <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-xs font-medium text-gold-700">
+                    {ep.pillarLabel}
+                  </span>
+                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${alpStageColors[ep.alpStage] || 'bg-navy-50 text-navy-700'}`}>
+                    {ep.alpStage}
+                  </span>
                 </div>
                 <h2 className="text-lg font-semibold leading-snug text-navy-800 transition-colors group-hover:text-gold-600">
                   {ep.title}
                 </h2>
                 <p className="mt-2 line-clamp-2 text-sm text-navy-600">{ep.description}</p>
-                <p className="mt-3 text-xs text-navy-400">
+                {/* Persona & concepts */}
+                <div className="mt-3 space-y-1">
+                  <p className="text-xs text-navy-500">
+                    <span className="font-medium">Best for:</span> {ep.bestFor}
+                  </p>
+                </div>
+                <p className="mt-2 text-xs text-navy-400">
                   {new Date(ep.publishedAt).toLocaleDateString('en-AU', {
                     day: 'numeric',
                     month: 'long',

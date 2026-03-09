@@ -12,25 +12,31 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'The Emotional Money Podcast | Understand Your Relationship With Money',
+    default: 'The Emotional Money Podcast | Psychology-First Financial Transformation',
     template: '%s | The Emotional Money Podcast',
   },
   description:
-    'Explore the emotions that drive your financial decisions. Hosted by David & Emme — helping Australians understand why they feel the way they do about money.',
+    'The only Australian podcast using Affective Liminal Psychology to create lasting financial transformation. Change how you feel about money — podcast, course, and companion app.',
   keywords: [
     'emotional money',
     'financial psychology',
+    'affective liminal psychology',
     'money mindset',
     'personal finance australia',
     'money emotions',
     'financial wellness',
     'money persona',
+    'financial transformation',
+    'this naked mind money',
+    'ALP framework',
   ],
   authors: [{ name: 'The Emotional Money Podcast' }],
   openGraph: {
     type: 'website',
     locale: 'en_AU',
     siteName: 'The Emotional Money Podcast',
+    description:
+      'The only Australian podcast using Affective Liminal Psychology to create lasting financial transformation. Podcast + Course + Companion App.',
   },
 }
 

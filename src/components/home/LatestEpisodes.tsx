@@ -9,6 +9,7 @@ const placeholderEpisodes = [
     description:
       'Every financial decision you make is influenced by messages you absorbed as a child. David and Emme explore how your earliest money memories are still running the show today.',
     contentPillar: 'Emotional Deep Dives',
+    alpStage: 'Awareness',
     duration: 38,
     thumbnail: null,
   },
@@ -19,6 +20,7 @@ const placeholderEpisodes = [
     description:
       'Are you an Anxious Protector? A Free Spirit? A Wounded Warrior? Discover the five emotional patterns that define your relationship with money.',
     contentPillar: 'Money Personalities',
+    alpStage: 'Awareness',
     duration: 42,
     thumbnail: null,
   },
@@ -29,10 +31,18 @@ const placeholderEpisodes = [
     description:
       'After a breakup, many of us cope through spending. David and Emme unpack the emotional mechanics of retail therapy and how to catch yourself before the credit card does.',
     contentPillar: 'Real Life Money',
+    alpStage: 'Examination',
     duration: 35,
     thumbnail: null,
   },
 ]
+
+const alpStageColors: Record<string, string> = {
+  Awareness: 'bg-blue-50 text-blue-700',
+  Examination: 'bg-purple-50 text-purple-700',
+  Embodiment: 'bg-rose-50 text-rose-700',
+  Integration: 'bg-emerald-50 text-emerald-700',
+}
 
 export function LatestEpisodes() {
   return (
@@ -76,8 +86,13 @@ export function LatestEpisodes() {
 
               {/* Content */}
               <div className="p-5">
-                <div className="mb-2 inline-flex rounded-full bg-gold-50 px-2.5 py-0.5 text-xs font-medium text-gold-700">
-                  {ep.contentPillar}
+                <div className="mb-2 flex flex-wrap gap-1.5">
+                  <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-xs font-medium text-gold-700">
+                    {ep.contentPillar}
+                  </span>
+                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${alpStageColors[ep.alpStage] || 'bg-navy-50 text-navy-700'}`}>
+                    {ep.alpStage}
+                  </span>
                 </div>
                 <h3 className="text-lg font-semibold leading-snug text-navy-800 transition-colors group-hover:text-gold-600">
                   {ep.title}

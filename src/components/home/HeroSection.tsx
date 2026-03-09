@@ -15,20 +15,20 @@ export function HeroSection() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-navy-700/60 px-4 py-1.5 text-sm text-gold-400">
               <span className="inline-block h-2 w-2 rounded-full bg-gold-500" />
-              Launching July 2026
+              Evidence-Based Financial Psychology
             </div>
 
             <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              How you <span className="text-gold-500">feel</span> about money
+              Change how you <span className="text-gold-500">feel</span> about money,
               <br />
-              changes <span className="text-gold-500">everything</span>
+              and watch your financial life{' '}
+              <span className="text-gold-500">transform</span>
             </h1>
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-navy-300">
-              Your financial life isn&apos;t just about numbers — it&apos;s about the emotions
-              driving every decision you make. The Emotional Money Podcast explores why we
-              feel the way we do about money, and how understanding those feelings can
-              transform your financial future.
+              The only Australian podcast using Affective Liminal Psychology to create
+              lasting financial transformation. The same methodology behind This Naked
+              Mind&apos;s 90% success rate &mdash; now for your relationship with money.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -36,29 +36,35 @@ export function HeroSection() {
                 href="/quiz"
                 className="inline-flex items-center justify-center rounded-lg bg-gold-500 px-6 py-3.5 text-base font-semibold text-navy-900 shadow-lg shadow-gold-500/20 transition-all hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/30"
               >
-                Discover Your Money Persona
+                Take the Free Quiz
               </Link>
               <Link
-                href="/episodes"
+                href="/courses"
                 className="inline-flex items-center justify-center rounded-lg border border-navy-600 px-6 py-3.5 text-base font-semibold text-white transition-colors hover:border-navy-500 hover:bg-navy-700/50"
               >
-                Browse Episodes
+                Explore the Program
               </Link>
             </div>
 
-            {/* Social Proof */}
-            <div className="mt-10 flex items-center gap-6 text-sm text-navy-400">
+            {/* Trust Signals */}
+            <div className="mt-10 space-y-2.5 text-sm text-navy-400">
               <div className="flex items-center gap-2">
                 <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
-                Video + Audio Podcast
+                Same methodology: 90% success rate (This Naked Mind)
               </div>
               <div className="flex items-center gap-2">
                 <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
-                New Episodes Weekly
+                First application to money psychology in Australia
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+                Podcast + Interactive Course + Companion App
               </div>
             </div>
           </div>
@@ -78,18 +84,18 @@ export function HeroSection() {
                   <p className="text-xs text-navy-400">Starts with how you feel</p>
                 </div>
               </div>
-              {/* Floating labels */}
+              {/* ALP Stage labels */}
               <div className="absolute left-0 top-1/4 rounded-lg bg-navy-700/90 px-3 py-1.5 text-xs font-medium text-gold-400 shadow-lg">
-                Fear &amp; Security
+                Awareness
               </div>
               <div className="absolute right-0 top-1/3 rounded-lg bg-navy-700/90 px-3 py-1.5 text-xs font-medium text-gold-400 shadow-lg">
-                Joy &amp; Freedom
+                Examination
               </div>
               <div className="absolute bottom-1/4 left-4 rounded-lg bg-navy-700/90 px-3 py-1.5 text-xs font-medium text-gold-400 shadow-lg">
-                Shame &amp; Guilt
+                Embodiment
               </div>
               <div className="absolute bottom-1/3 right-4 rounded-lg bg-navy-700/90 px-3 py-1.5 text-xs font-medium text-gold-400 shadow-lg">
-                Hope &amp; Growth
+                Integration
               </div>
             </div>
           </div>

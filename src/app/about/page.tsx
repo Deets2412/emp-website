@@ -5,7 +5,7 @@ import { NewsletterForm } from '@/components/shared/NewsletterForm'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Meet David and Emme — the hosts of The Emotional Money Podcast. Learn about our mission to help Australians understand the emotions behind their financial decisions.',
+    'Meet David and Emme — the hosts of The Emotional Money Podcast. Learn about our mission and the Affective Liminal Psychology framework powering lasting financial transformation.',
 }
 
 export default function AboutPage() {
@@ -17,7 +17,8 @@ export default function AboutPage() {
           <h1 className="text-4xl font-bold text-navy-800 sm:text-5xl">Meet Your Hosts</h1>
           <p className="mt-4 text-lg text-navy-600">
             Two very different perspectives. One shared mission: helping you understand why you
-            feel the way you do about money.
+            feel the way you do about money — and transforming that relationship using
+            evidence-based psychology.
           </p>
         </div>
 
@@ -31,7 +32,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-navy-800">David</h2>
-                <p className="text-sm text-gold-600">Wealth Manager · 25 Years Experience</p>
+                <p className="text-sm text-gold-600">Wealth Manager &middot; 25 Years Experience</p>
               </div>
             </div>
             <p className="mt-6 leading-relaxed text-navy-700">
@@ -65,7 +66,7 @@ export default function AboutPage() {
               <div>
                 <h2 className="text-2xl font-bold text-navy-800">Emme</h2>
                 <p className="text-sm text-gold-600">
-                  Psychology Student · Gen Z Perspective
+                  Psychology Student &middot; Gen Z Perspective
                 </p>
               </div>
             </div>
@@ -93,10 +94,73 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* ALP Approach */}
+        <div className="mt-16 rounded-2xl border border-gold-200 bg-white p-8 sm:p-12">
+          <div className="mx-auto max-w-3xl">
+            <div className="mb-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 text-sm font-medium text-gold-700">
+              Our Methodology
+            </div>
+            <h2 className="text-3xl font-bold text-navy-800">
+              Our Approach: Affective Liminal Psychology
+            </h2>
+            <p className="mt-4 leading-relaxed text-navy-700">
+              While David brings wealth management expertise and Emme contributes psychology
+              studies and Gen Z perspective, we&apos;re united by one methodology: Affective
+              Liminal Psychology (ALP).
+            </p>
+            <p className="mt-4 leading-relaxed text-navy-700">
+              ALP is the evidence-based framework developed by Annie Grace that achieved 90%
+              efficacy in helping people transform their relationship with alcohol through This
+              Naked Mind. We&apos;re the first to apply this proven framework to money in
+              Australia.
+            </p>
+
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-navy-800">Why ALP Works</h3>
+              <p className="mt-2 leading-relaxed text-navy-600">
+                Traditional finance focuses on behaviour change through willpower. ALP changes
+                the emotional relationship FIRST, so aligned behaviour flows naturally.
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {[
+                { label: 'CBT', desc: 'Cognitive Behavioural Therapy — reframing unhelpful thought patterns' },
+                { label: 'ACT', desc: 'Acceptance & Commitment Therapy — values-aligned action' },
+                { label: 'IFS', desc: 'Internal Family Systems — understanding your money "parts"' },
+                { label: 'Attachment Theory', desc: 'How early relationships shape financial behaviour' },
+              ].map((framework) => (
+                <div key={framework.label} className="rounded-lg bg-slate-bg p-4">
+                  <span className="text-sm font-semibold text-navy-800">{framework.label}</span>
+                  <p className="mt-1 text-xs text-navy-600">{framework.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 rounded-xl bg-navy-800 p-6">
+              <p className="text-sm font-medium text-gold-400">Our Promise</p>
+              <p className="mt-2 text-navy-300">
+                We&apos;re not here to tell you what to do with money. You already know that.
+                We&apos;re here to help you understand WHY you&apos;re not doing it — and
+                change that at the deepest level.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <Link
+                href="/alp-methodology"
+                className="text-sm font-semibold text-gold-600 transition-colors hover:text-gold-700"
+              >
+                Learn more about ALP &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Origin Story */}
-        <div className="mt-16 mx-auto max-w-3xl">
+        <div className="mx-auto mt-16 max-w-3xl">
           <h2 className="text-center text-3xl font-bold text-navy-800">Why This Podcast?</h2>
-          <div className="mt-8 space-y-6 text-navy-700 leading-relaxed">
+          <div className="mt-8 space-y-6 leading-relaxed text-navy-700">
             <p>
               It started with a simple observation. David had been helping clients manage their
               money for over two decades, but he kept running into the same wall: people who
@@ -115,8 +179,10 @@ export default function AboutPage() {
               finance had been ignoring for years.
             </p>
             <p>
-              The Emotional Money Podcast was born from that realisation — that understanding
-              your feelings about money is just as important as understanding your finances.
+              When they discovered Affective Liminal Psychology — the framework behind This
+              Naked Mind&apos;s remarkable 90% success rate — everything fell into place. ALP
+              provided the scientific structure they needed to create real, lasting
+              transformation. Not through willpower, but through genuine emotional change.
             </p>
           </div>
         </div>
@@ -128,18 +194,18 @@ export default function AboutPage() {
             {[
               {
                 icon: '❤️',
-                title: 'Feelings Come First',
-                desc: 'Understand the emotion before the spreadsheet. Your financial decisions make perfect sense once you understand the feelings driving them.',
+                title: 'Emotion-First Change',
+                desc: 'Change how you feel about money first. The behaviour changes naturally afterward — no willpower battles required.',
               },
               {
                 icon: '🤝',
-                title: 'No Shame, No Judgment',
-                desc: 'Every money story is valid. We create a space where you can be honest about your financial feelings without fear of being judged.',
+                title: 'No Shame, No Force',
+                desc: 'Your money patterns made perfect sense given what you learned. We update the learning, not punish the behaviour.',
               },
               {
-                icon: '🌱',
-                title: 'Small Steps, Real Change',
-                desc: 'Transformation does not happen overnight. We believe in gentle, sustainable shifts that add up to profound change over time.',
+                icon: '🧬',
+                title: 'Evidence-Based',
+                desc: 'Built on proven psychological frameworks: CBT, ACT, IFS, and attachment theory. Not guesswork — science.',
               },
             ].map((item) => (
               <div
@@ -149,6 +215,25 @@ export default function AboutPage() {
                 <span className="text-3xl">{item.icon}</span>
                 <h3 className="mt-3 text-lg font-semibold text-navy-800">{item.title}</h3>
                 <p className="mt-2 text-sm text-navy-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Trust Signals */}
+        <div className="mt-16 rounded-2xl bg-slate-bg p-8">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: 'Built on Affective Liminal Psychology' },
+              { label: '90% efficacy rate (This Naked Mind)' },
+              { label: 'Evidence-based: CBT, ACT, IFS, Attachment' },
+              { label: 'Australian-developed for Australian context' },
+            ].map((signal) => (
+              <div key={signal.label} className="flex items-start gap-2">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-100 text-xs text-gold-700">
+                  ✓
+                </span>
+                <span className="text-sm text-navy-700">{signal.label}</span>
               </div>
             ))}
           </div>
@@ -173,7 +258,7 @@ export default function AboutPage() {
             href="/episodes"
             className="text-sm font-medium text-gold-600 transition-colors hover:text-gold-700"
           >
-            ← Start listening to episodes
+            &larr; Start listening to episodes
           </Link>
         </div>
       </div>

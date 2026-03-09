@@ -1,21 +1,21 @@
 const values = [
   {
-    icon: '❤️',
-    title: 'Emotions First',
+    icon: '🧬',
+    title: 'Evidence-Based Psychology',
     description:
-      'We start with how money makes you feel — the anxiety, the excitement, the shame, the hope. Understanding your emotional responses is the first step to financial change.',
+      'Built on Affective Liminal Psychology — the same framework behind This Naked Mind\'s 90% success rate. We use proven methods from CBT, ACT, IFS, and attachment theory.',
   },
   {
-    icon: '🪞',
-    title: 'Know Your Patterns',
+    icon: '💫',
+    title: 'Second-Order Change',
     description:
-      'Discover which of the 5 Money Personas drives your financial decisions. When you see your patterns clearly, you can start making choices that actually align with who you want to be.',
+      'We don\'t just change what you DO with money — we change how you FEEL about it. When the emotion shifts, aligned behaviour flows naturally. No willpower battles.',
   },
   {
     icon: '🌱',
-    title: 'Real Transformation',
+    title: 'Lasting Transformation',
     description:
-      'This isn\'t about budgeting spreadsheets. It\'s about changing your relationship with money from the inside out — so the strategies you learn actually stick.',
+      'This isn\'t about budgeting spreadsheets or mindset affirmations. It\'s about changing your relationship with money from the inside out — so the changes actually stick.',
   },
 ]
 
@@ -28,7 +28,8 @@ export function ValueProposition() {
             Why your feelings about money matter
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-navy-600">
-            Traditional finance tells you what to do. We help you understand why you haven&apos;t been doing it.
+            You know what you should do with money. We help you understand why you&apos;re
+            not doing it — and change that at the deepest level.
           </p>
         </div>
 
