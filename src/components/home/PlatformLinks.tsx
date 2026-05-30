@@ -1,3 +1,5 @@
+'use client'
+
 import { SOCIAL_LINKS } from '@/lib/constants'
 
 const platforms = [

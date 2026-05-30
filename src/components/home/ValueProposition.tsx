@@ -1,3 +1,5 @@
+'use client'
+
 const cards = [
   {
     title: 'Grounded in psychology',
