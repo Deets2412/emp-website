@@ -3,7 +3,7 @@ const values = [
     icon: '🧬',
     title: 'Evidence-Based Psychology',
     description:
-      'Built on Affective Liminal Psychology — the same framework behind This Naked Mind\'s 90% success rate. We use proven methods from CBT, ACT, IFS, and attachment theory.',
+      'Grounded in proven therapeutic frameworks — CBT, ACT, IFS, and attachment theory. Not guesswork. Not affirmations. Real psychology applied to your money story.',
   },
   {
     icon: '💫',

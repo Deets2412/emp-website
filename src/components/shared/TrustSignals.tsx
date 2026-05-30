@@ -1,9 +1,9 @@
 export function TrustSignals({ variant = 'horizontal' }: { variant?: 'horizontal' | 'compact' }) {
   const signals = [
-    'Built on Affective Liminal Psychology',
-    '90% efficacy rate (This Naked Mind)',
+    'Psychology-first approach to money',
     'Evidence-based: CBT, ACT, IFS, Attachment',
     'Australian-developed for Australian context',
+    'Educational content — not financial advice',
   ]
 
   if (variant === 'compact') {

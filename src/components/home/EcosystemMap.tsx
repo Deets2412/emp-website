@@ -5,7 +5,7 @@ const steps = [
     icon: '📻',
     title: 'The Podcast',
     price: 'Free',
-    description: 'Builds awareness and introduces ALP concepts through weekly conversations.',
+    description: 'Builds awareness of the emotions driving your financial decisions through weekly conversations.',
     cta: { href: '/episodes', label: 'Start Listening' },
   },
   {
@@ -19,7 +19,7 @@ const steps = [
     icon: '📚',
     title: 'Transformation Program',
     price: '$697–997',
-    description: '12-week structured ALP framework with interactive course and companion app.',
+    description: '12-week structured transformation program with interactive course and companion app.',
     cta: { href: '/courses', label: 'Explore Program' },
   },
   {

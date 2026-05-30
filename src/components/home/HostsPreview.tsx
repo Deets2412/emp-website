@@ -3,11 +3,11 @@ import Link from 'next/link'
 const hosts = [
   {
     name: 'David',
-    role: 'Wealth Manager & Financial Adviser',
+    role: 'Co-Host & Financial Educator',
     age: '50',
     description:
       'With decades of experience managing wealth, David brings a deep understanding of the financial world — and an even deeper curiosity about why smart people make emotional money decisions.',
-    expertise: ['Financial Advisory', 'Wealth Management', 'Behavioural Finance'],
+    expertise: ['Behavioural Finance', 'Financial Education', 'Money Psychology'],
     initial: 'D',
   },
   {

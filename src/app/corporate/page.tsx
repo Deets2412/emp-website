@@ -76,8 +76,8 @@ export default function CorporatePage() {
               label: 'per week lost to financial worry at work (on average)',
             },
             {
-              stat: '90%',
-              label: 'efficacy rate of ALP methodology (This Naked Mind)',
+              stat: '78%',
+              label: 'of Australians report money as their biggest source of stress',
             },
           ].map((item) => (
             <div

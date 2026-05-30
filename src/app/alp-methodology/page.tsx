@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { ALP_STAGES } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Affective Liminal Psychology — The Science Behind EMP',
+  title: 'Our Approach — The Psychology Behind Emotional Money',
   description:
-    'Discover how Affective Liminal Psychology (ALP) creates lasting financial transformation. The evidence-based framework behind This Naked Mind — now applied to your relationship with money.',
+    'Discover how psychology-first methods create lasting financial transformation. Built on evidence-based frameworks including CBT, ACT, IFS, and attachment theory.',
 }
 
 export default function ALPMethodologyPage() {
@@ -18,15 +18,15 @@ export default function ALPMethodologyPage() {
             Evidence-Based Framework
           </div>
           <h1 className="text-4xl font-bold text-navy-800 sm:text-5xl">
-            Affective Liminal Psychology
+            Our Approach
           </h1>
           <p className="mt-4 text-xl text-gold-600">
-            The science behind lasting financial transformation
+            The psychology behind lasting financial transformation
           </p>
           <p className="mt-6 text-lg text-navy-600">
-            Traditional financial advice tells you what to do with money. ALP changes who you
-            are with money. That&apos;s the difference between first-order change (forcing new
-            behaviour) and second-order change (genuinely wanting different things).
+            Traditional financial advice tells you what to do with money. Our approach changes
+            who you are with money. That&apos;s the difference between first-order change
+            (forcing new behaviour) and second-order change (genuinely wanting different things).
           </p>
         </div>
 
@@ -35,16 +35,14 @@ export default function ALPMethodologyPage() {
           <h2 className="text-3xl font-bold text-navy-800">What is ALP?</h2>
           <div className="mt-6 space-y-4 leading-relaxed text-navy-700">
             <p>
-              Affective Liminal Psychology is the evidence-based framework developed by Annie
-              Grace through her work with This Naked Mind. It combines insights from
-              neuroscience, psychology, and behavioural science to create genuine, lasting change
-              in deeply ingrained patterns.
+              Affective Liminal Psychology (ALP) is one of the evidence-based frameworks
+              informing our approach. It combines insights from neuroscience, psychology, and
+              behavioural science to create genuine, lasting change in deeply ingrained patterns.
             </p>
             <p>
-              The framework achieved a remarkable 90% efficacy rate in helping people transform
-              their relationship with alcohol — not through willpower or shame, but by changing
-              how people genuinely FEEL about the behaviour. We&apos;re applying this same
-              proven methodology to money.
+              Rather than fighting yourself to change financial behaviours through willpower, this
+              approach works at the emotional level — changing how you genuinely FEEL about money.
+              When the feeling shifts, aligned behaviour follows naturally.
             </p>
           </div>
         </div>
@@ -118,7 +116,7 @@ export default function ALPMethodologyPage() {
               </div>
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-gold-500">
-                  Second-Order Change (ALP)
+                  Second-Order Change (Our Approach)
                 </h3>
                 <ul className="mt-4 space-y-3">
                   {[
@@ -189,11 +187,11 @@ export default function ALPMethodologyPage() {
         {/* CTA */}
         <div className="mx-auto mt-16 max-w-2xl rounded-2xl bg-navy-800 p-8 text-center sm:p-12">
           <h2 className="text-2xl font-bold text-white">
-            Ready to Experience ALP?
+            Ready to Start Your Transformation?
           </h2>
           <p className="mt-3 text-navy-300">
             Start with the free quiz to discover your Money Persona, or explore the
-            Transformation Program for the full ALP experience.
+            Transformation Program for the full structured experience.
           </p>
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link

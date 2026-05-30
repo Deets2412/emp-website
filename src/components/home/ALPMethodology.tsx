@@ -33,16 +33,15 @@ export function ALPMethodology() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="mb-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 text-sm font-medium text-gold-700">
-            Evidence-Based Framework
+            Psychology-First Approach
           </div>
           <h2 className="text-3xl font-bold text-navy-800 sm:text-4xl">
             The Science Behind the Transformation
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-navy-600">
             Most financial advice focuses on behaviour (&quot;just budget&quot;). We work with
-            the emotions DRIVING that behaviour. Affective Liminal Psychology (ALP) is the
-            evidence-based framework behind This Naked Mind&apos;s 90% success rate in
-            changing deep-seated patterns. Now we&apos;re applying it to money.
+            the emotions DRIVING that behaviour — because when the feeling shifts, aligned
+            behaviour follows naturally. No willpower battles required.
           </p>
         </div>
 
@@ -68,7 +67,7 @@ export function ALPMethodology() {
             href="/alp-methodology"
             className="inline-flex items-center gap-2 text-sm font-semibold text-gold-600 transition-colors hover:text-gold-700"
           >
-            Learn more about Affective Liminal Psychology
+            Learn more about our approach
             <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>

@@ -15,7 +15,7 @@ export function HeroSection() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-navy-700/60 px-4 py-1.5 text-sm text-gold-400">
               <span className="inline-block h-2 w-2 rounded-full bg-gold-500" />
-              Evidence-Based Financial Psychology
+              Psychology-First Financial Wellness
             </div>
 
             <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
@@ -26,9 +26,9 @@ export function HeroSection() {
             </h1>
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-navy-300">
-              The only Australian podcast using Affective Liminal Psychology to create
-              lasting financial transformation. The same methodology behind This Naked
-              Mind&apos;s 90% success rate &mdash; now for your relationship with money.
+              An Australian podcast exploring the emotional side of money. Because how you
+              feel about money matters more than any spreadsheet — and it&apos;s something
+              nobody in finance is talking about.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -52,13 +52,13 @@ export function HeroSection() {
                 <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
-                Same methodology: 90% success rate (This Naked Mind)
+                Built on proven psychological frameworks: CBT, ACT, IFS
               </div>
               <div className="flex items-center gap-2">
                 <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
-                First application to money psychology in Australia
+                Australian-made, for the Australian money experience
               </div>
               <div className="flex items-center gap-2">
                 <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">

@@ -32,21 +32,21 @@ export default function AboutPage() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-navy-800">David</h2>
-                <p className="text-sm text-gold-600">Wealth Manager &middot; 25 Years Experience</p>
+                <p className="text-sm text-gold-600">Co-Host &middot; Financial Educator</p>
               </div>
             </div>
             <p className="mt-6 leading-relaxed text-navy-700">
-              After 25 years as a financial planner and wealth manager, David noticed something
-              that changed everything: his clients&apos; biggest barrier to financial success was
-              never the numbers — it was the emotions. Fear, shame, guilt, avoidance — these
-              feelings were running the show behind every dollar decision.
+              With decades spent in the financial services industry, David noticed something
+              that changed everything: the biggest barrier to financial success is never the
+              numbers — it&apos;s the emotions. Fear, shame, guilt, avoidance — these feelings
+              run the show behind every dollar decision.
             </p>
             <p className="mt-4 leading-relaxed text-navy-700">
-              David brings decades of real-world financial experience and a deep understanding of
-              why knowing what to do with money and actually doing it are very different things.
+              David brings real-world financial knowledge and a deep curiosity about why knowing
+              what to do with money and actually doing it are very different things.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {['Financial Planning', 'Wealth Management', 'Behavioural Finance'].map((tag) => (
+              {['Behavioural Finance', 'Financial Education', 'Money Psychology'].map((tag) => (
                 <span
                   key={tag}
                   className="rounded-full bg-navy-50 px-3 py-1 text-xs font-medium text-navy-700"
@@ -101,18 +101,17 @@ export default function AboutPage() {
               Our Methodology
             </div>
             <h2 className="text-3xl font-bold text-navy-800">
-              Our Approach: Affective Liminal Psychology
+              Our Approach: Psychology-First Change
             </h2>
             <p className="mt-4 leading-relaxed text-navy-700">
-              While David brings wealth management expertise and Emme contributes psychology
-              studies and Gen Z perspective, we&apos;re united by one methodology: Affective
-              Liminal Psychology (ALP).
+              While David brings financial education experience and Emme contributes psychology
+              studies and Gen Z perspective, they&apos;re united by one belief: lasting financial
+              change starts with emotions, not spreadsheets.
             </p>
             <p className="mt-4 leading-relaxed text-navy-700">
-              ALP is the evidence-based framework developed by Annie Grace that achieved 90%
-              efficacy in helping people transform their relationship with alcohol through This
-              Naked Mind. We&apos;re the first to apply this proven framework to money in
-              Australia.
+              We apply evidence-based psychological frameworks — including CBT, ACT, IFS, and
+              attachment theory — to help people understand and transform their emotional
+              relationship with money.
             </p>
 
             <div className="mt-8">
@@ -151,7 +150,7 @@ export default function AboutPage() {
                 href="/alp-methodology"
                 className="text-sm font-semibold text-gold-600 transition-colors hover:text-gold-700"
               >
-                Learn more about ALP &rarr;
+                Learn more about our approach &rarr;
               </Link>
             </div>
           </div>
@@ -179,10 +178,9 @@ export default function AboutPage() {
               finance had been ignoring for years.
             </p>
             <p>
-              When they discovered Affective Liminal Psychology — the framework behind This
-              Naked Mind&apos;s remarkable 90% success rate — everything fell into place. ALP
-              provided the scientific structure they needed to create real, lasting
-              transformation. Not through willpower, but through genuine emotional change.
+              They discovered a psychology-first approach to change — one that doesn&apos;t
+              rely on willpower or shame, but on understanding and transforming the emotions
+              driving financial behaviour. That insight became the foundation of Emotional Money.
             </p>
           </div>
         </div>
@@ -224,10 +222,10 @@ export default function AboutPage() {
         <div className="mt-16 rounded-2xl bg-slate-bg p-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { label: 'Built on Affective Liminal Psychology' },
-              { label: '90% efficacy rate (This Naked Mind)' },
+              { label: 'Psychology-first approach to money' },
               { label: 'Evidence-based: CBT, ACT, IFS, Attachment' },
-              { label: 'Australian-developed for Australian context' },
+              { label: 'Australian-made for the Australian context' },
+              { label: 'Educational content — not financial advice' },
             ].map((signal) => (
               <div key={signal.label} className="flex items-start gap-2">
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-100 text-xs text-gold-700">

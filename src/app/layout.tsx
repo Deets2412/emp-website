@@ -16,19 +16,16 @@ export const metadata: Metadata = {
     template: '%s | The Emotional Money Podcast',
   },
   description:
-    'The only Australian podcast using Affective Liminal Psychology to create lasting financial transformation. Change how you feel about money — podcast, course, and companion app.',
+    'An Australian podcast exploring the psychology of money. Change how you feel about money — podcast, course, and companion app.',
   keywords: [
     'emotional money',
     'financial psychology',
-    'affective liminal psychology',
     'money mindset',
     'personal finance australia',
     'money emotions',
     'financial wellness',
     'money persona',
     'financial transformation',
-    'this naked mind money',
-    'ALP framework',
   ],
   authors: [{ name: 'The Emotional Money Podcast' }],
   openGraph: {
@@ -36,7 +33,7 @@ export const metadata: Metadata = {
     locale: 'en_AU',
     siteName: 'The Emotional Money Podcast',
     description:
-      'The only Australian podcast using Affective Liminal Psychology to create lasting financial transformation. Podcast + Course + Companion App.',
+      'An Australian podcast exploring the psychology of money. Podcast + Course + Companion App.',
   },
 }
 

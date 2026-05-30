@@ -1,7 +1,7 @@
 export const SITE_NAME = 'The Emotional Money Podcast'
 export const SITE_TAGLINE = 'Psychology-First Financial Transformation'
 export const SITE_DESCRIPTION =
-  'The only Australian podcast using Affective Liminal Psychology to create lasting financial transformation. Hosted by David & Emme — change how you feel about money, and watch your financial life transform.'
+  'An Australian podcast exploring the psychology of money. Hosted by David & Emme — understanding how you feel about money is the first step to changing it.'
 
 export const PERSONAS = {
   'balanced-builder': {

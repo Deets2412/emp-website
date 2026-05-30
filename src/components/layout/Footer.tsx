@@ -122,8 +122,26 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Compliance Disclaimers */}
+        <div className="mt-12 border-t border-navy-800 pt-8">
+          <div className="space-y-3 text-xs leading-relaxed text-navy-600">
+            <p>
+              <strong className="text-navy-500">Not Financial Advice:</strong> Content on this site is for educational and entertainment purposes only. Nothing here constitutes financial, investment, tax, or legal advice. Please consult a qualified professional before making financial decisions.
+            </p>
+            <p>
+              <strong className="text-navy-500">Independence:</strong> Emotional Money is independently produced and is not affiliated with, endorsed by, or associated with Morgans Financial or any financial institution. Views expressed are personal and independent.
+            </p>
+            <p>
+              <strong className="text-navy-500">Not Therapy:</strong> This content is not a substitute for professional mental health support. If you are experiencing financial stress or mental health concerns, please seek help from a qualified professional.
+            </p>
+            <p>
+              <strong className="text-navy-500">Editorial Independence:</strong> All opinions expressed are those of the hosts in their personal capacity and do not represent the views of any employer, licensee, or professional body.
+            </p>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between border-t border-navy-800 pt-8 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between border-t border-navy-800 pt-8 sm:flex-row">
           <p className="text-xs text-navy-500">
             &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
           </p>
