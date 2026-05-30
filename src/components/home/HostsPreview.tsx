@@ -2,61 +2,77 @@ import Link from 'next/link'
 
 const hosts = [
   {
-    name: 'David',
-    role: 'Co-Host & Financial Educator',
-    age: '50',
-    description:
-      'With decades of experience managing wealth, David brings a deep understanding of the financial world — and an even deeper curiosity about why smart people make emotional money decisions.',
-    expertise: ['Behavioural Finance', 'Financial Education', 'Money Psychology'],
     initial: 'D',
+    name: 'David',
+    role: 'Co-host',
+    bio: "David is endlessly curious about why smart, capable people make emotional decisions with money — and what it takes to change that. He started Emotional Money as a personal project to explore the feelings underneath our financial choices, in plain language and without judgement.",
+    chips: ['Behavioural curiosity', 'Plain language', 'Lifelong learner'],
   },
   {
-    name: 'Emme',
-    role: 'Psychology Student & Co-Host',
-    age: '25',
-    description:
-      'Emme brings a fresh Gen Z perspective and her psychology studies to every conversation — asking the questions her generation is thinking but nobody else dares to say out loud.',
-    expertise: ['Psychology', 'Gen Z Perspective', 'Alternative Frameworks'],
     initial: 'E',
+    name: 'Emme',
+    role: 'Co-host',
+    bio: "Emme brings a fresh Gen Z perspective and her psychology studies to every conversation — asking the questions her generation is actually thinking but nobody else says out loud. She keeps the show honest, curious and grounded.",
+    chips: ['Psychology student', 'Gen Z lens', 'Asks the real questions'],
   },
 ]
 
 export function HostsPreview() {
   return (
-    <section className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-navy-800 sm:text-4xl">Meet Your Hosts</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-navy-600">
-            Two generations. Two perspectives. One mission: helping you understand your emotional
-            relationship with money.
+    <section className="py-24" style={{ background: 'var(--color-paper)' }}>
+      <div className="mx-auto max-w-[1180px] px-8">
+        <div className="mb-[52px] max-w-[62ch]">
+          <p className="eyebrow">Your hosts</p>
+          <h2 className="mt-3.5 mb-[18px] font-serif leading-[1.1]" style={{ fontSize: 'clamp(2rem, 3.6vw, 2.9rem)' }}>
+            Two perspectives, one curiosity
+          </h2>
+          <p className="lead">
+            A podcast about why capable people make emotional decisions with money — and what it
+            takes to feel differently about it.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {hosts.map((host) => (
             <div
               key={host.name}
-              className="overflow-hidden rounded-2xl border border-navy-100 bg-slate-bg"
+              className="flex flex-col gap-6 rounded-[18px] p-9 sm:flex-row"
+              style={{ background: 'var(--color-paper)', border: '1px solid var(--color-line)' }}
             >
-              {/* Photo Placeholder */}
-              <div className="flex h-48 items-center justify-center bg-gradient-to-br from-navy-700 to-navy-900">
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gold-500/20 ring-2 ring-gold-500/40">
-                  <span className="text-4xl font-bold text-gold-500">{host.initial}</span>
-                </div>
+              <div
+                className="grid h-[72px] w-[72px] shrink-0 place-items-center rounded-full font-serif text-[1.8rem] font-semibold"
+                style={{
+                  background: 'var(--color-sage-wash)',
+                  color: 'var(--color-sage-deep)',
+                  border: '1px solid color-mix(in oklch, var(--color-sage-deep) 25%, transparent)',
+                }}
+                aria-hidden="true"
+              >
+                {host.initial}
               </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-navy-800">{host.name}</h3>
-                <p className="text-sm font-medium text-gold-600">{host.role}</p>
-                <p className="mt-3 text-sm leading-relaxed text-navy-600">{host.description}</p>
+              <div>
+                <h3 className="font-serif text-[1.5rem]" style={{ color: 'var(--color-ink)' }}>{host.name}</h3>
+                <div
+                  className="mt-1 font-mono text-[0.68rem] uppercase tracking-[0.1em]"
+                  style={{ color: 'var(--color-ink-faint)' }}
+                >
+                  {host.role}
+                </div>
+                <p className="mt-3 text-[0.94rem] leading-relaxed" style={{ color: 'var(--color-ink-soft)' }}>
+                  {host.bio}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {host.expertise.map((tag) => (
+                  {host.chips.map((chip) => (
                     <span
-                      key={tag}
-                      className="rounded-full bg-navy-100 px-3 py-1 text-xs font-medium text-navy-700"
+                      key={chip}
+                      className="rounded-full px-2.5 py-1 font-mono text-[0.68rem] tracking-[0.04em]"
+                      style={{
+                        background: 'var(--color-paper-2)',
+                        border: '1px solid var(--color-line)',
+                        color: 'var(--color-ink-soft)',
+                      }}
                     >
-                      {tag}
+                      {chip}
                     </span>
                   ))}
                 </div>
@@ -65,12 +81,22 @@ export function HostsPreview() {
           ))}
         </div>
 
+        <div
+          className="mt-6 rounded-[0_10px_10px_0] border-l-2 px-5 py-4 text-[0.88rem]"
+          style={{
+            borderColor: 'var(--color-sage)',
+            background: 'var(--color-sage-wash)',
+            color: 'var(--color-sage-deep)',
+          }}
+        >
+          Emotional Money is an independent personal project. The hosts share their own views in a
+          personal capacity — this show is not produced by, affiliated with, or endorsed by any
+          employer or financial services licensee, and nothing here is financial product advice.
+        </div>
+
         <div className="mt-8 text-center">
-          <Link
-            href="/about"
-            className="text-sm font-semibold text-gold-600 transition-colors hover:text-gold-700"
-          >
-            Learn more about our story &rarr;
+          <Link href="/about" className="text-sm font-medium transition-colors" style={{ color: 'var(--color-sage-deep)' }}>
+            Learn more about our story →
           </Link>
         </div>
       </div>

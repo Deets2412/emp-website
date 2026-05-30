@@ -1,105 +1,89 @@
 import Link from 'next/link'
+import { ALP_STAGES } from '@/lib/constants'
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-navy-800">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_var(--color-gold-500)_0%,_transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,_var(--color-navy-500)_0%,_transparent_40%)]" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Text Content */}
-          <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-navy-700/60 px-4 py-1.5 text-sm text-gold-400">
-              <span className="inline-block h-2 w-2 rounded-full bg-gold-500" />
-              Psychology-First Financial Wellness
-            </div>
-
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Change how you <span className="text-gold-500">feel</span> about money,
-              <br />
-              and watch your financial life{' '}
-              <span className="text-gold-500">transform</span>
-            </h1>
-
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-navy-300">
-              An Australian podcast exploring the emotional side of money. Because how you
-              feel about money matters more than any spreadsheet — and it&apos;s something
-              nobody in finance is talking about.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/quiz"
-                className="inline-flex items-center justify-center rounded-lg bg-gold-500 px-6 py-3.5 text-base font-semibold text-navy-900 shadow-lg shadow-gold-500/20 transition-all hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/30"
-              >
-                Take the Free Quiz
-              </Link>
-              <Link
-                href="/courses"
-                className="inline-flex items-center justify-center rounded-lg border border-navy-600 px-6 py-3.5 text-base font-semibold text-white transition-colors hover:border-navy-500 hover:bg-navy-700/50"
-              >
-                Explore the Program
-              </Link>
-            </div>
-
-            {/* Trust Signals */}
-            <div className="mt-10 space-y-2.5 text-sm text-navy-400">
-              <div className="flex items-center gap-2">
-                <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
-                Built on proven psychological frameworks: CBT, ACT, IFS
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
-                Australian-made, for the Australian money experience
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="h-5 w-5 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
-                Podcast + Interactive Course + Companion App
-              </div>
-            </div>
+    <section className="px-8 pb-16 pt-[88px]" style={{ maxWidth: '1180px', margin: '0 auto' }}>
+      <div className="grid items-center gap-16 lg:grid-cols-[1.25fr_0.9fr]">
+        {/* Copy */}
+        <div>
+          <p className="eyebrow">Psychology-led money education</p>
+          <h1
+            className="mt-[18px] mb-6 font-serif leading-[1.04] tracking-tight"
+            style={{ fontSize: 'clamp(2.7rem, 5.6vw, 4.4rem)' }}
+          >
+            Change how you{' '}
+            <em className="font-serif italic" style={{ color: 'var(--color-sage-deep)' }}>feel</em>
+            {' '}about money.
+          </h1>
+          <p className="lead">
+            An independent Australian podcast about the emotions underneath our financial choices.
+            We explore the psychology of money — gently, without shame — so the way you feel about
+            it can shift, and steadier choices follow.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3.5">
+            <Link href="/quiz" className="em-btn em-btn-primary">Take the free quiz</Link>
+            <Link href="/courses" className="em-btn em-btn-ghost">Explore the program</Link>
           </div>
-
-          {/* Hero Visual */}
-          <div className="relative hidden lg:block">
-            <div className="relative mx-auto h-[400px] w-[400px]">
-              {/* Decorative circles */}
-              <div className="absolute inset-0 rounded-full border-2 border-dashed border-navy-600 opacity-40" />
-              <div className="absolute inset-8 rounded-full border-2 border-dashed border-gold-700 opacity-30" />
-              <div className="absolute inset-16 flex items-center justify-center rounded-full bg-navy-700/80">
-                <div className="text-center">
-                  <div className="text-6xl">💰</div>
-                  <p className="mt-2 text-sm font-medium text-gold-400">
-                    Your Money Story
-                  </p>
-                  <p className="text-xs text-navy-400">Starts with how you feel</p>
-                </div>
+          <div className="mt-10 flex flex-wrap gap-6 border-t pt-6" style={{ borderColor: 'var(--color-line)' }}>
+            {[
+              'Independent Australian podcast',
+              'Grounded in established psychology',
+              'Podcast · Course · Companion app',
+            ].map((item) => (
+              <div key={item} className="flex max-w-[200px] items-start gap-2.5">
+                <svg className="mt-0.5 h-[18px] w-[18px] shrink-0" viewBox="0 0 18 18" fill="none" style={{ color: 'var(--color-sage)' }}>
+                  <circle cx="9" cy="9" r="7.25" stroke="currentColor" strokeWidth="1.4"/>
+                  <circle cx="9" cy="9" r="2.4" fill="currentColor"/>
+                </svg>
+                <span className="text-sm leading-snug" style={{ color: 'var(--color-ink-soft)' }}>{item}</span>
               </div>
-              {/* ALP Stage labels */}
-              <div className="absolute left-0 top-1/4 rounded-lg bg-navy-700/90 px-3 py-1.5 text-xs font-medium text-gold-400 shadow-lg">
-                Awareness
-              </div>
-              <div className="absolute right-0 top-1/3 rounded-lg bg-navy-700/90 px-3 py-1.5 text-xs font-medium text-gold-400 shadow-lg">
-                Examination
-              </div>
-              <div className="absolute bottom-1/4 left-4 rounded-lg bg-navy-700/90 px-3 py-1.5 text-xs font-medium text-gold-400 shadow-lg">
-                Embodiment
-              </div>
-              <div className="absolute bottom-1/3 right-4 rounded-lg bg-navy-700/90 px-3 py-1.5 text-xs font-medium text-gold-400 shadow-lg">
-                Integration
-              </div>
-            </div>
+            ))}
           </div>
         </div>
+
+        {/* Frame card */}
+        <aside
+          className="hidden rounded-[20px] p-[30px] lg:block"
+          style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-line)' }}
+          aria-label="The four stages of the approach"
+        >
+          <div className="flex items-center gap-3.5 pb-[22px]" style={{ borderBottom: '1px solid var(--color-line)' }}>
+            <div
+              className="grid h-11 w-11 shrink-0 place-items-center rounded-full"
+              style={{ border: '1.5px solid var(--color-sage-deep)', color: 'var(--color-sage-deep)' }}
+              aria-hidden="true"
+            >
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.4"/>
+                <path d="M11 6v5l3.2 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div className="font-mono text-[0.66rem] uppercase tracking-[0.14em]" style={{ color: 'var(--color-ink-faint)' }}>
+                Your money story
+              </div>
+              <div className="font-serif text-[1.18rem]" style={{ color: 'var(--color-ink)' }}>
+                Starts with how you feel
+              </div>
+            </div>
+          </div>
+          <div className="mt-2">
+            {ALP_STAGES.map((stage, i) => (
+              <div
+                key={stage.key}
+                className="flex items-center gap-4 py-[15px]"
+                style={{ borderBottom: i < ALP_STAGES.length - 1 ? '1px solid var(--color-line)' : 'none' }}
+              >
+                <span className="w-[22px] shrink-0 font-mono text-[0.72rem]" style={{ color: 'var(--color-sage-deep)' }}>
+                  0{i + 1}
+                </span>
+                <span className="font-serif text-[1.1rem]" style={{ color: 'var(--color-ink)' }}>{stage.label}</span>
+                <span className="ml-auto text-[0.8rem]" style={{ color: 'var(--color-ink-faint)' }}>{stage.description}</span>
+              </div>
+            ))}
+          </div>
+        </aside>
       </div>
     </section>
   )

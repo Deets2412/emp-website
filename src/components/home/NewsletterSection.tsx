@@ -2,21 +2,31 @@ import { NewsletterForm } from '@/components/shared/NewsletterForm'
 
 export function NewsletterSection() {
   return (
-    <section className="bg-gradient-to-br from-navy-800 to-navy-900 py-16 sm:py-20">
-      <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-white sm:text-4xl">
-          Get weekly emotional money insights
-        </h2>
-        <p className="mt-4 text-lg text-navy-300">
-          Every week, David and Emme share practical insights on understanding and
-          transforming your emotional relationship with money. No spam. Unsubscribe anytime.
-        </p>
-        <div className="mt-8">
-          <NewsletterForm variant="footer" />
+    <section className="py-24" style={{ background: 'var(--color-paper)' }}>
+      <div className="mx-auto max-w-[1180px] px-8">
+        <div
+          className="rounded-3xl px-10 py-16 text-center sm:px-16"
+          style={{ background: 'var(--color-ink)' }}
+        >
+          <p className="eyebrow" style={{ color: 'var(--color-sage)' }}>Stay connected</p>
+          <h2
+            className="mt-4 font-serif"
+            style={{ fontSize: 'clamp(1.9rem, 3.4vw, 2.7rem)', color: 'var(--color-paper)' }}
+          >
+            Weekly notes on the feelings behind money
+          </h2>
+          <p className="mx-auto mt-4 max-w-[48ch] text-[1.05rem] leading-relaxed" style={{ color: 'oklch(0.82 0.012 80)' }}>
+            Every week, David and Emme share a short, practical reflection on understanding your
+            emotional relationship with money. No spam. Unsubscribe anytime.
+          </p>
+          <div className="mx-auto mt-7 max-w-[480px]">
+            <NewsletterForm variant="dark" />
+          </div>
+          <p className="mt-4 text-[0.78rem]" style={{ color: 'oklch(0.7 0.01 80)' }}>
+            By subscribing you agree to receive emails from Emotional Money. Every email includes
+            an unsubscribe link.
+          </p>
         </div>
-        <p className="mt-4 text-xs text-navy-500">
-          Join our growing community of Australians who are changing how they feel about money.
-        </p>
       </div>
     </section>
   )

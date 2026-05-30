@@ -1,103 +1,115 @@
 import Link from 'next/link'
 
-const steps = [
+const items = [
   {
-    icon: '📻',
-    title: 'The Podcast',
     price: 'Free',
-    description: 'Builds awareness of the emotions driving your financial decisions through weekly conversations.',
-    cta: { href: '/episodes', label: 'Start Listening' },
+    title: 'The podcast',
+    body: 'Builds awareness and introduces the ideas through weekly conversations.',
+    cta: { href: '/episodes', label: 'Start listening' },
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="9" stroke="currentColor" strokeWidth="1.4"/>
+        <circle cx="13" cy="13" r="3" stroke="currentColor" strokeWidth="1.4"/>
+        <path d="M13 4v3m0 12v3M4 13h3m12 0h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    ),
   },
   {
-    icon: '🎯',
-    title: 'Money Persona Quiz',
     price: 'Free',
-    description: 'Identifies your dominant emotional money pattern and recommends your path.',
-    cta: { href: '/quiz', label: 'Take the Quiz' },
+    title: 'Money persona quiz',
+    body: 'Identifies your dominant emotional pattern and points you to a starting path.',
+    cta: { href: '/quiz', label: 'Take the quiz' },
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="9" stroke="currentColor" strokeWidth="1.4"/>
+        <path d="M13 8v5l3 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    ),
   },
   {
-    icon: '📚',
-    title: 'Transformation Program',
-    price: '$697–997',
-    description: '12-week structured transformation program with interactive course and companion app.',
-    cta: { href: '/courses', label: 'Explore Program' },
+    price: '$697–997 AUD',
+    title: 'Transformation program',
+    body: 'A 12-week structured course with the full emotion-first framework and a companion app.',
+    cta: { href: '/courses', label: 'Explore the program' },
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <path d="M5 6h12a2 2 0 0 1 2 2v12H7a2 2 0 0 1-2-2V6Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+        <path d="M9 10h6m-6 4h4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    ),
   },
   {
-    icon: '📱',
-    title: 'Companion App',
     price: 'Included',
-    description: 'Track emotions at the moment of decision. Build awareness. See patterns.',
-    cta: { href: '/app', label: 'See Features' },
+    title: 'Companion app',
+    body: 'Notice how you feel at the moment of a decision. Build awareness. See patterns.',
+    cta: { href: '/app', label: 'See features' },
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <rect x="8" y="4" width="10" height="18" rx="2.5" stroke="currentColor" strokeWidth="1.4"/>
+        <path d="M12 18h2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    ),
   },
   {
-    icon: '🤝',
-    title: 'Ongoing Community',
     price: 'Included',
-    description: 'Alumni support, advanced content, and continued growth beyond the program.',
+    title: 'Ongoing community',
+    body: 'Alumni support and continued growth beyond the program.',
     cta: null,
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <circle cx="10" cy="11" r="3" stroke="currentColor" strokeWidth="1.4"/>
+        <circle cx="18" cy="11" r="3" stroke="currentColor" strokeWidth="1.4"/>
+        <path d="M5 21c0-3 2.2-5 5-5m11 5c0-3-2.2-5-5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    ),
   },
 ]
 
 export function EcosystemMap() {
   return (
-    <section className="bg-navy-800 py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            More Than a Podcast: A Complete Transformation System
+    <section className="py-24" style={{ background: 'var(--color-paper-2)', borderTop: '1px solid var(--color-line)', borderBottom: '1px solid var(--color-line)' }}>
+      <div className="mx-auto max-w-[1180px] px-8">
+        <div className="mb-[52px] max-w-[62ch]">
+          <p className="eyebrow">The ecosystem</p>
+          <h2 className="mt-3.5 mb-[18px] font-serif leading-[1.1]" style={{ fontSize: 'clamp(2rem, 3.6vw, 2.9rem)' }}>
+            More than a podcast — a way to go deeper
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-navy-300">
-            Everything works together to create lasting transformation — from free
-            awareness to deep, supported change.
+          <p className="lead">
+            Everything fits together, from free awareness to a structured, supported program. Start
+            wherever you are; there&rsquo;s no pressure to go further than feels right.
           </p>
         </div>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {steps.map((step, i) => (
-            <div key={step.title} className="relative">
-              <div className="flex h-full flex-col rounded-2xl border border-navy-700 bg-navy-700/50 p-5 transition-colors hover:border-gold-500/30">
-                <div className="text-3xl">{step.icon}</div>
-                <h3 className="mt-3 text-base font-semibold text-white">{step.title}</h3>
-                <span className="mt-1 inline-block rounded-full bg-gold-500/20 px-2.5 py-0.5 text-xs font-medium text-gold-400">
-                  {step.price}
-                </span>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-navy-400">
-                  {step.description}
-                </p>
-                {step.cta && (
-                  <Link
-                    href={step.cta.href}
-                    className="mt-4 text-xs font-semibold text-gold-500 transition-colors hover:text-gold-400"
-                  >
-                    {step.cta.label} &rarr;
-                  </Link>
-                )}
-              </div>
-              {/* Arrow connector (hidden on mobile, visible on lg) */}
-              {i < steps.length - 1 && (
-                <div className="absolute -right-2.5 top-1/2 z-10 hidden -translate-y-1/2 text-navy-600 lg:block">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M9 18l6-6-6-6" />
-                  </svg>
-                </div>
+        <div
+          className="grid overflow-hidden rounded-[18px] sm:grid-cols-2 lg:grid-cols-5"
+          style={{ border: '1px solid var(--color-line)' }}
+        >
+          {items.map((item, i) => (
+            <div
+              key={item.title}
+              className="flex flex-col gap-3.5 p-8"
+              style={{
+                background: 'var(--color-paper)',
+                borderRight: i < items.length - 1 ? '1px solid var(--color-line)' : 'none',
+                borderBottom: '1px solid var(--color-line)',
+              }}
+            >
+              <span style={{ color: 'var(--color-sage-deep)' }} aria-hidden="true">{item.icon}</span>
+              <span className="font-mono text-[0.72rem] tracking-[0.06em]" style={{ color: 'var(--color-clay)' }}>
+                {item.price}
+              </span>
+              <h4 className="font-serif text-[1.22rem]" style={{ color: 'var(--color-ink)' }}>{item.title}</h4>
+              <p className="flex-1 text-[0.86rem] leading-[1.5]" style={{ color: 'var(--color-ink-soft)' }}>{item.body}</p>
+              {item.cta && (
+                <Link
+                  href={item.cta.href}
+                  className="mt-auto inline-flex items-center gap-1.5 text-[0.82rem]"
+                  style={{ color: 'var(--color-sage-deep)' }}
+                >
+                  {item.cta.label} <span className="em-arrow">→</span>
+                </Link>
               )}
             </div>
           ))}
-        </div>
-
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link
-            href="/episodes"
-            className="inline-flex items-center justify-center rounded-lg bg-gold-500 px-6 py-3 text-sm font-semibold text-navy-900 transition-all hover:bg-gold-400"
-          >
-            Start with the Podcast
-          </Link>
-          <Link
-            href="/quiz"
-            className="inline-flex items-center justify-center rounded-lg border border-navy-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-navy-500 hover:bg-navy-700/50"
-          >
-            Or Jump to the Quiz
-          </Link>
         </div>
       </div>
     </section>
