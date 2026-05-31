@@ -1,33 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* DEPRECATED: navy/gold/slate-bg tokens kept for non-restyled legacy pages.
-     Remove once the legacy page restyle PR migrates the last consumers. */
-  --color-navy-50: #EEF1F6;
-  --color-navy-100: #D5DAE6;
-  --color-navy-200: #ABB5CD;
-  --color-navy-300: #8190B4;
-  --color-navy-400: #576B9B;
-  --color-navy-500: #3A5082;
-  --color-navy-600: #2E4068;
-  --color-navy-700: #23304E;
-  --color-navy-800: #1B2A4A;
-  --color-navy-900: #0F1A30;
-  --color-navy-950: #080D1A;
-  --color-gold-50: #FDF8EB;
-  --color-gold-100: #F9EDD0;
-  --color-gold-200: #F3DBA1;
-  --color-gold-300: #EDC972;
-  --color-gold-400: #E0B554;
-  --color-gold-500: #D4A843;
-  --color-gold-600: #B88D2F;
-  --color-gold-700: #8A6A23;
-  --color-gold-800: #5C4718;
-  --color-gold-900: #2E230C;
-  --color-slate-bg: #F8FAFC;
-  --color-dark-text: #1A1A2E;
-
-  /* New warm paper palette */
+  /* Warm paper palette */
   --color-paper: oklch(0.977 0.006 85);
   --color-paper-2: oklch(0.948 0.009 84);
   --color-paper-3: oklch(0.928 0.012 82);

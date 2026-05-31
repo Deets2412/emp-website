@@ -1,86 +1,28 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Fragment } from 'react'
+import { ALL_EPISODES, getEpisodeBySlug, type Episode } from '@/data/episodes'
 
-// Placeholder episode data
-const episodeData: Record<string, {
-  episodeNumber: number
-  title: string
-  description: string
-  contentPillar: string
-  pillarLabel: string
-  duration: number
-  publishedAt: string
-  showNotes: string[]
-  youtubeId?: string
-  spotifyUrl?: string
-}> = {
-  'your-money-story': {
-    episodeNumber: 1,
-    title: 'Your Money Story — How Childhood Messages Shape Your Financial Life',
-    description:
-      'Every financial decision you make is influenced by messages you absorbed as a child. David and Emme explore how your earliest money memories are still running the show today — and what you can do to rewrite the script.',
-    contentPillar: 'psychology',
-    pillarLabel: 'Emotional Deep Dives',
-    duration: 38,
-    publishedAt: '2026-07-01',
-    showNotes: [
-      'How childhood money messages become adult financial habits',
-      'The difference between what your parents said and what you felt',
-      'Common money stories: scarcity, abundance, shame, and secrecy',
-      'A simple exercise to identify your dominant money narrative',
-      'Why awareness is the first step — not willpower',
-    ],
-  },
-  'five-money-personas': {
-    episodeNumber: 2,
-    title: 'The Five Money Personas — Which One Are You?',
-    description:
-      'Are you an Anxious Protector? A Free Spirit? A Wounded Warrior? David and Emme introduce the five emotional patterns that define your relationship with money.',
-    contentPillar: 'personality',
-    pillarLabel: 'Money Personalities',
-    duration: 42,
-    publishedAt: '2026-07-08',
-    showNotes: [
-      'Introducing the 5 Money Personas framework',
-      'The Balanced Builder — steady and growth-oriented',
-      'The Anxious Protector — driven by financial fear',
-      'The Avoidant Free Spirit — living in the moment',
-      'The Wounded Warrior — carrying past financial trauma',
-      'The Perfectionist Analyzer — paralyzed by analysis',
-      'Take the quiz to discover your persona',
-    ],
-  },
-  'breakup-spending': {
-    episodeNumber: 3,
-    title: 'Breakup Spending — Why Heartbreak Hits Your Wallet',
-    description:
-      'After a breakup, many of us cope through spending. David and Emme unpack the emotional mechanics of retail therapy and how to catch yourself before the credit card does.',
-    contentPillar: 'practical',
-    pillarLabel: 'Real Life Money',
-    duration: 35,
-    publishedAt: '2026-07-15',
-    showNotes: [
-      'The neuroscience of heartbreak and spending',
-      'Why shopping activates the same reward pathways as love',
-      "Emme's personal story with breakup spending",
-      'The 48-hour rule for emotional purchases',
-      'Healthier emotional outlets that actually work',
-    ],
-  },
+// Pre-render every known episode at build time.
+export function generateStaticParams() {
+  return ALL_EPISODES.map((ep) => ({ slug: ep.slug }))
 }
 
-// Fallback for episodes not in our data
-function getEpisode(slug: string) {
-  return episodeData[slug] || {
-    episodeNumber: 0,
-    title: 'Episode Coming Soon',
-    description: 'This episode is coming soon. Check back later!',
-    contentPillar: 'psychology',
-    pillarLabel: 'Emotional Deep Dives',
-    duration: 0,
-    publishedAt: '2026-07-01',
-    showNotes: [],
-  }
+// Fallback for slugs we don't have data for yet.
+const fallbackEpisode: Episode = {
+  slug: 'coming-soon',
+  episodeNumber: null,
+  title: 'Episode Coming Soon',
+  description: 'This episode is coming soon. Check back later!',
+  contentPillar: 'psychology',
+  pillarLabel: 'Emotional Deep Dives',
+  duration: 0,
+  publishedAt: null,
+  alpStage: null,
+  bestFor: 'All Personas',
+  keyConcepts: [],
+  showNotes: [],
+  status: 'scheduled',
 }
 
 export async function generateMetadata({
@@ -89,9 +31,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const episode = getEpisode(slug)
+  const episode = getEpisodeBySlug(slug) ?? fallbackEpisode
+  const prefix = episode.episodeNumber !== null ? `Ep ${episode.episodeNumber}: ` : ''
   return {
-    title: `Ep ${episode.episodeNumber}: ${episode.title}`,
+    title: `${prefix}${episode.title}`,
     description: episode.description,
   }
 }
@@ -103,6 +46,8 @@ const pageStyles = `
   .ep-crumb .sep { color: var(--line-strong); }
 
   .ep-pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay); border: 1px solid color-mix(in oklch, var(--clay) 35%, transparent); background: var(--clay-wash); padding: 6px 14px; border-radius: 999px; margin-bottom: 20px; }
+
+  .ep-note { font-size: 0.92rem; color: var(--ink-soft); font-style: italic; margin-top: 14px; max-width: 60ch; }
 
   .ep-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 20px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
   .ep-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--line-strong); flex: none; }
@@ -119,6 +64,9 @@ const pageStyles = `
 
   .ep-about { max-width: 68ch; }
   .ep-about p { font-size: 1.08rem; color: var(--ink-soft); line-height: 1.7; }
+
+  .keyconcepts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .keyconcepts .kc { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.04em; padding: 6px 12px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--line); color: var(--ink-soft); }
 
   .notes-card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 38px 36px; }
   .notes-card .nlist { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
@@ -143,7 +91,21 @@ export default async function EpisodePage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const episode = getEpisode(slug)
+  const episode = getEpisodeBySlug(slug) ?? fallbackEpisode
+
+  const crumbLabel = episode.episodeNumber !== null ? `Episode ${episode.episodeNumber}` : 'Bonus'
+  const metaParts: string[] = []
+  metaParts.push(episode.episodeNumber !== null ? `Episode ${episode.episodeNumber}` : 'Bonus episode')
+  if (episode.duration > 0) metaParts.push(`${episode.duration} min`)
+  if (episode.publishedAt) {
+    metaParts.push(
+      new Date(episode.publishedAt).toLocaleDateString('en-AU', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }),
+    )
+  }
 
   return (
     <>
@@ -156,24 +118,21 @@ export default async function EpisodePage({
           <nav className="ep-crumb">
             <Link href="/episodes">Episodes</Link>
             <span className="sep">/</span>
-            <span>Episode {episode.episodeNumber}</span>
+            <span>{crumbLabel}</span>
           </nav>
 
           <span className="ep-pill">{episode.pillarLabel}</span>
           <h1>{episode.title}</h1>
 
+          {episode.bonusNote && <p className="ep-note">{episode.bonusNote}</p>}
+
           <div className="ep-meta">
-            <span>Episode {episode.episodeNumber}</span>
-            <span className="dot" aria-hidden="true" />
-            <span>{episode.duration} min</span>
-            <span className="dot" aria-hidden="true" />
-            <span>
-              {new Date(episode.publishedAt).toLocaleDateString('en-AU', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-              })}
-            </span>
+            {metaParts.map((part, i) => (
+              <Fragment key={i}>
+                {i > 0 && <span className="dot" aria-hidden="true" />}
+                <span>{part}</span>
+              </Fragment>
+            ))}
           </div>
         </div>
       </section>
@@ -214,6 +173,13 @@ export default async function EpisodePage({
           <div className="ep-about">
             <p>{episode.description}</p>
           </div>
+          {episode.keyConcepts.length > 0 && (
+            <div className="keyconcepts">
+              {episode.keyConcepts.map((kc) => (
+                <span key={kc} className="kc">{kc}</span>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

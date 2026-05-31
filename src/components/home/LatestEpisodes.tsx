@@ -1,34 +1,16 @@
 import Link from 'next/link'
+import { SEASON_ONE } from '@/data/episodes'
 
-const episodes = [
-  {
-    slug: 'your-money-story',
-    num: 1,
-    duration: 38,
-    stage: 'Awareness',
-    pillar: 'Emotional deep dives',
-    title: 'Your Money Story — how childhood messages shape your financial life',
-    body: 'The messages we absorb as children quietly influence the decisions we make as adults. David and Emme explore how early money memories still run the show.',
-  },
-  {
-    slug: 'five-money-personas',
-    num: 2,
-    duration: 42,
-    stage: 'Awareness',
-    pillar: 'Money personalities',
-    title: 'The Five Money Personas — which one are you?',
-    body: 'Anxious Protector? Avoidant Free Spirit? Wounded Warrior? We unpack the five emotional patterns that quietly define our relationship with money.',
-  },
-  {
-    slug: 'breakup-spending',
-    num: 3,
-    duration: 35,
-    stage: 'Examination',
-    pillar: 'Real life money',
-    title: 'Breakup Spending — why heartbreak hits your wallet',
-    body: 'After a breakup, many of us cope through spending. David and Emme unpack the emotional mechanics of retail therapy — and how to catch yourself first.',
-  },
-]
+// First three Season 1 episodes, mapped to this card's shape. Styling unchanged.
+const episodes = SEASON_ONE.slice(0, 3).map((ep) => ({
+  slug: ep.slug,
+  num: ep.episodeNumber,
+  duration: ep.duration,
+  stage: ep.alpStage,
+  pillar: ep.pillarLabel,
+  title: ep.title,
+  body: ep.description,
+}))
 
 export function LatestEpisodes() {
   return (
