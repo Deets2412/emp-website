@@ -5,7 +5,7 @@ import { NewsletterForm } from '@/components/shared/NewsletterForm'
 export const metadata: Metadata = {
   title: 'Free Resources',
   description:
-    'Download free tools to transform your emotional relationship with money. Workbooks, trackers, conversation guides, and more.',
+    'Free tools for understanding your emotional relationship with money. Workbooks, trackers, conversation guides, and more.',
 }
 
 const resources = [
@@ -43,72 +43,92 @@ const resources = [
   },
 ]
 
+const pageStyles = `
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .res-card { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 32px; transition: border-color 0.18s ease, transform 0.18s ease; }
+  .res-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+  .res-card .rtop { display: flex; gap: 18px; align-items: flex-start; }
+  .res-card .ricon { font-size: 2.2rem; line-height: 1; flex: none; }
+  .res-card h3 { font-size: 1.35rem; margin-bottom: 10px; }
+  .res-card .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .res-card .tag { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.04em; padding: 5px 10px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--line); color: var(--ink-soft); }
+  .res-card .tag.fmt { background: var(--sage-wash); border-color: color-mix(in oklch, var(--sage-deep) 25%, transparent); color: var(--sage-deep); }
+  .res-card .desc { font-size: 0.94rem; color: var(--ink-soft); line-height: 1.62; margin: 18px 0 0; flex: 1; }
+  .res-card .dl { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .res-card .dl .lbl { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+  @media (max-width: 820px) { .res-grid { grid-template-columns: 1fr; } }
+`
+
 export default function ResourcesPage() {
   return (
-    <div className="bg-slate-bg py-12 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Hero */}
-        <div className="mx-auto max-w-2xl text-center">
-          <h1 className="text-4xl font-bold text-navy-800 sm:text-5xl">
-            Free Tools to Transform Your Money Relationship
+    <>
+      <style>{pageStyles}</style>
+
+      {/* hero */}
+      <section className="phero">
+        <div className="wrap">
+          <p className="eyebrow">Free resources</p>
+          <h1>
+            Free tools to understand your <em>money relationship</em>
           </h1>
-          <p className="mt-4 text-lg text-navy-600">
-            Practical resources designed to help you understand and gently shift your emotional
-            money patterns. All free. No credit card required.
+          <p className="lead">
+            Practical resources designed to help you notice and gently shift your emotional money
+            patterns. All free. No credit card required.
           </p>
         </div>
+      </section>
 
-        {/* Resource Cards */}
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {resources.map((resource) => (
-            <div
-              key={resource.title}
-              className="flex flex-col rounded-2xl border border-navy-100 bg-white p-6 transition-all hover:border-gold-300 hover:shadow-lg hover:shadow-gold-500/5"
-            >
-              <div className="flex items-start gap-4">
-                <span className="text-4xl">{resource.icon}</span>
-                <div className="flex-1">
-                  <h2 className="text-xl font-semibold text-navy-800">{resource.title}</h2>
-                  <div className="mt-1 flex gap-2">
-                    <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-xs font-medium text-gold-700">
-                      {resource.format}
-                    </span>
-                    <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-600">
-                      {resource.pages}
-                    </span>
+      {/* resource cards */}
+      <section className="band alt">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow">Downloads</p>
+            <h2>Workbooks, trackers &amp; guides</h2>
+          </div>
+          <div className="res-grid">
+            {resources.map((resource) => (
+              <div key={resource.title} className="res-card">
+                <div className="rtop">
+                  <span className="ricon" aria-hidden="true">{resource.icon}</span>
+                  <div>
+                    <h3>{resource.title}</h3>
+                    <div className="tags">
+                      <span className="tag fmt">{resource.format}</span>
+                      <span className="tag">{resource.pages}</span>
+                    </div>
                   </div>
                 </div>
+                <p className="desc">{resource.description}</p>
+                <div className="dl">
+                  <p className="lbl">Enter your email to download</p>
+                  <NewsletterForm variant="inline" />
+                </div>
               </div>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-navy-600">
-                {resource.description}
-              </p>
-              <div className="mt-6 rounded-xl bg-slate-bg p-4">
-                <p className="mb-2 text-center text-xs font-medium text-navy-600">
-                  Enter your email to download
-                </p>
-                <NewsletterForm variant="inline" />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* Quiz CTA */}
-        <div className="mt-16 rounded-2xl bg-navy-800 p-8 text-center sm:p-12">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            Not Sure Where to Start?
-          </h2>
-          <p className="mt-3 text-navy-300">
-            Take our free Money Persona Quiz to discover which resources are best suited to your
-            emotional money pattern.
-          </p>
-          <Link
-            href="/quiz"
-            className="mt-6 inline-flex rounded-lg bg-gold-500 px-6 py-3 text-sm font-semibold text-navy-900 transition-colors hover:bg-gold-400"
-          >
-            Discover Your Money Persona
-          </Link>
+      {/* quiz cta */}
+      <section className="band">
+        <div className="wrap">
+          <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+            <p className="eyebrow">Where to start</p>
+            <h2 style={{ fontSize: 'clamp(1.9rem, 3.4vw, 2.6rem)', margin: '14px 0 16px' }}>
+              Not sure where to start?
+            </h2>
+            <p style={{ color: 'var(--ink-soft)', marginBottom: '28px' }}>
+              Take the free Money Persona Quiz to discover which resources are best suited to your
+              emotional money pattern.
+            </p>
+            <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link className="btn btn-primary" href="/quiz">
+                Discover your Money Persona
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }

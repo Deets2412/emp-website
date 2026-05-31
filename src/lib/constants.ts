@@ -45,12 +45,14 @@ export const CONTENT_PILLARS = [
   { value: 'practical', label: 'Real Life Money', description: 'Navigating emotional money moments' },
 ] as const
 
+// Brief-aligned 5-item nav (Episodes · Money Quiz · Program · Approach · About).
+// /how-it-works and /resources routes still exist but are no longer nav-prominent;
+// /alp-methodology is 308-redirected to /approach in next.config.ts.
 export const NAV_LINKS = [
   { href: '/episodes', label: 'Episodes' },
   { href: '/quiz', label: 'Money Quiz' },
   { href: '/courses', label: 'Program' },
-  { href: '/how-it-works', label: 'How It Works' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/approach', label: 'Approach' },
   { href: '/about', label: 'About' },
 ] as const
 

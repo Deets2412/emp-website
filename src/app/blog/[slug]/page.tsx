@@ -29,7 +29,7 @@ const posts: Record<
       'Money is one of the most emotionally charged topics in our lives. It is tied to our sense of safety, our self-worth, our childhood memories, and our deepest fears about the future. When tears come up around money, they are not about the dollars — they are about what those dollars represent.',
       'David sees this regularly with clients who have been managing their finances for decades. "People apologise for getting emotional," he says. "But those emotions are the most important information in the room. They are telling us something the spreadsheet never could."',
       'Emme relates from a different angle: "For my generation, money anxiety is constant. We are told we should be grateful for any job, while watching home ownership drift further away. The tears are not weakness — they are a completely rational response to an overwhelming situation."',
-      'So what do your money tears actually mean? They are usually pointing to one of four core emotions: fear (of not having enough), shame (of not being enough), grief (for opportunities lost), or frustration (at feeling stuck). Recognising which emotion is driving your tears is the first step toward understanding — and eventually transforming — your relationship with money.',
+      'So what do your money tears actually mean? They are usually pointing to one of four core emotions: fear (of not having enough), shame (of not being enough), grief (for opportunities lost), or frustration (at feeling stuck). Recognising which emotion is driving your tears is the first step toward understanding — and eventually shifting — your relationship with money.',
     ],
   },
   'money-fights-decoded': {
@@ -42,7 +42,7 @@ const posts: Record<
     date: '2026-07-08',
     readTime: 6,
     body: [
-      'Every financial planner has heard it: "We fight about money all the time." But after 25 years of working with couples, I can tell you that the fight is almost never actually about the money. It is about what money represents — security, freedom, control, love, or worth.',
+      'Couples say it all the time: "We fight about money constantly." But the fight is almost never actually about the money. It is about what money represents — security, freedom, control, love, or worth.',
       'When one partner criticises the other for spending too much on coffee, they are usually not upset about the $5. They are expressing anxiety about security. When someone hides a purchase, they are not just avoiding a lecture — they are protecting their sense of autonomy.',
       'The key to breaking the cycle is recognising that you and your partner probably have different Money Personas. An Anxious Protector paired with an Avoidant Free Spirit? That is a recipe for conflict unless both people understand what is driving the other.',
       'The good news is that once you decode what your money fights are really about, you can stop arguing about the symptoms and start addressing the real emotions underneath. That is where actual change happens.',
@@ -134,6 +134,63 @@ export async function generateMetadata({
   }
 }
 
+const pageStyles = `
+  .breadcrumb { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+  .breadcrumb a { color: var(--sage-deep); }
+  .breadcrumb a:hover { color: var(--ink); }
+  .breadcrumb .sep { color: var(--line-strong); }
+  .breadcrumb .current { color: var(--ink-soft); }
+
+  .article { max-width: 720px; }
+
+  .cat-tag { display: inline-flex; align-items: center; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage-deep); background: var(--sage-wash); border: 1px solid color-mix(in oklch, var(--sage-deep) 22%, transparent); border-radius: 999px; padding: 6px 13px; margin-bottom: 18px; }
+
+  .article-head h1 { font-size: clamp(2.1rem, 4.6vw, 3.2rem); line-height: 1.08; margin-bottom: 20px; max-width: 20ch; }
+
+  .meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  .meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--sage); }
+
+  .article-body { margin-top: 38px; display: flex; flex-direction: column; gap: 22px; }
+  .article-body p { font-size: 1.12rem; line-height: 1.75; color: var(--ink-soft); }
+
+  .quiz-cta { margin: 56px 0; background: var(--ink); border-radius: 20px; padding: 48px 40px; text-align: center; }
+  .quiz-cta h3 { font-size: 1.6rem; color: var(--paper); margin-bottom: 12px; }
+  .quiz-cta p { color: oklch(0.82 0.012 80); max-width: 46ch; margin: 0 auto 24px; line-height: 1.6; }
+
+  .share { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 26px; }
+  .share .label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+  .share button { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); background: transparent; border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 15px; cursor: pointer; transition: border-color 0.18s ease, color 0.18s ease; }
+  .share button:hover { border-color: var(--ink); color: var(--ink); }
+
+  .related { margin-top: 56px; }
+  .related h3 { font-size: 1.4rem; margin-bottom: 22px; }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rcard { display: block; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 26px 26px; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .rcard:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+  .rcard .rk { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage-deep); }
+  .rcard h4 { font-size: 1.18rem; margin: 10px 0 8px; line-height: 1.25; }
+  .rcard .rt { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+  .news-card { margin-top: 56px; background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 44px 40px; text-align: center; }
+  .news-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+  .news-card p { color: var(--ink-soft); max-width: 44ch; margin: 0 auto 22px; line-height: 1.6; }
+  .news-card .form-wrap { max-width: 420px; margin: 0 auto; }
+
+  .back-link { margin-top: 40px; }
+  .back-link a { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage-deep); display: inline-flex; align-items: center; gap: 8px; }
+  .back-link a:hover { color: var(--ink); }
+
+  .notfound { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .notfound h1 { font-size: 2rem; margin-bottom: 18px; }
+  .notfound a { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage-deep); }
+  .notfound a:hover { color: var(--ink); }
+
+  @media (max-width: 560px) {
+    .quiz-cta, .news-card { padding: 36px 26px; }
+  }
+`
+
 export default async function BlogPostPage({
   params,
 }: {
@@ -144,139 +201,121 @@ export default async function BlogPostPage({
 
   if (!post) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center bg-slate-bg">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-navy-800">Post Not Found</h1>
-          <Link
-            href="/blog"
-            className="mt-4 inline-flex text-sm font-medium text-gold-600 hover:text-gold-700"
-          >
-            ← Back to blog
-          </Link>
-        </div>
-      </div>
+      <>
+        <style>{pageStyles}</style>
+        <section className="band">
+          <div className="wrap">
+            <div className="notfound">
+              <div>
+                <h1>Post not found</h1>
+                <div className="back-link" style={{ marginTop: 0 }}>
+                  <Link href="/blog">← Back to blog</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
     )
   }
 
   const relatedSlugs = allSlugs.filter((s) => s !== slug && posts[s].category === post.category).slice(0, 2)
 
   return (
-    <div className="bg-slate-bg py-12 sm:py-16">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav className="mb-6 text-sm text-navy-500">
-          <Link href="/blog" className="transition-colors hover:text-gold-600">
-            Blog
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-navy-700">{post.title}</span>
-        </nav>
+    <>
+      <style>{pageStyles}</style>
 
-        {/* Header */}
-        <div className="mb-8">
-          <div className="mb-3 inline-flex rounded-full bg-gold-50 px-3 py-1 text-sm font-medium text-gold-700">
-            {post.categoryLabel}
-          </div>
-          <h1 className="text-3xl font-bold text-navy-800 sm:text-4xl">{post.title}</h1>
-          <div className="mt-4 flex items-center gap-4 text-sm text-navy-500">
-            <span>{post.author}</span>
-            <span className="h-1 w-1 rounded-full bg-navy-300" />
-            <span>
-              {new Date(post.date).toLocaleDateString('en-AU', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-              })}
-            </span>
-            <span className="h-1 w-1 rounded-full bg-navy-300" />
-            <span>{post.readTime} min read</span>
-          </div>
-        </div>
+      <section className="band">
+        <div className="wrap">
+          <article className="article">
+            {/* Breadcrumb */}
+            <nav className="breadcrumb">
+              <Link href="/blog">Blog</Link>
+              <span className="sep">/</span>
+              <span className="current">{post.title}</span>
+            </nav>
 
-        {/* Body */}
-        <div className="space-y-6 text-navy-700 leading-relaxed">
-          {post.body.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-        </div>
+            {/* Header */}
+            <header className="article-head">
+              <span className="cat-tag">{post.categoryLabel}</span>
+              <h1>{post.title}</h1>
+              <div className="meta">
+                <span>{post.author}</span>
+                <span className="dot" aria-hidden="true" />
+                <span>
+                  {new Date(post.date).toLocaleDateString('en-AU', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  })}
+                </span>
+                <span className="dot" aria-hidden="true" />
+                <span>{post.readTime} min read</span>
+              </div>
+            </header>
 
-        {/* Quiz CTA */}
-        <div className="my-10 rounded-2xl bg-navy-800 p-8 text-center">
-          <h3 className="text-xl font-bold text-white">Discover Your Money Persona</h3>
-          <p className="mt-2 text-navy-300">
-            Take our free 3-minute quiz and get a personalised action plan for your emotional
-            money pattern.
-          </p>
-          <Link
-            href="/quiz"
-            className="mt-4 inline-flex rounded-lg bg-gold-500 px-6 py-3 text-sm font-semibold text-navy-900 transition-colors hover:bg-gold-400"
-          >
-            Take the Quiz
-          </Link>
-        </div>
-
-        {/* Share */}
-        <div className="flex items-center gap-3 border-t border-navy-100 pt-6">
-          <span className="text-sm font-medium text-navy-600">Share:</span>
-          <button className="rounded-lg border border-navy-200 px-3 py-1.5 text-xs font-medium text-navy-600 transition-colors hover:border-gold-400 hover:text-gold-700">
-            Copy Link
-          </button>
-          <button className="rounded-lg border border-navy-200 px-3 py-1.5 text-xs font-medium text-navy-600 transition-colors hover:border-gold-400 hover:text-gold-700">
-            X / Twitter
-          </button>
-          <button className="rounded-lg border border-navy-200 px-3 py-1.5 text-xs font-medium text-navy-600 transition-colors hover:border-gold-400 hover:text-gold-700">
-            Facebook
-          </button>
-        </div>
-
-        {/* Related Posts */}
-        {relatedSlugs.length > 0 && (
-          <div className="mt-12">
-            <h3 className="text-lg font-semibold text-navy-800">Related Posts</h3>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              {relatedSlugs.map((s) => {
-                const related = posts[s]
-                return (
-                  <Link
-                    key={s}
-                    href={`/blog/${s}`}
-                    className="rounded-xl border border-navy-100 bg-white p-4 transition-all hover:border-gold-300 hover:shadow-md"
-                  >
-                    <span className="text-xs font-medium text-gold-700">
-                      {related.categoryLabel}
-                    </span>
-                    <h4 className="mt-1 font-semibold text-navy-800">{related.title}</h4>
-                    <p className="mt-1 text-sm text-navy-500">{related.readTime} min read</p>
-                  </Link>
-                )
-              })}
+            {/* Body */}
+            <div className="article-body">
+              {post.body.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
             </div>
-          </div>
-        )}
 
-        {/* Newsletter */}
-        <div className="mt-12 rounded-2xl border border-navy-100 bg-white p-8 text-center">
-          <h3 className="text-lg font-semibold text-navy-800">
-            Get Weekly Emotional Money Insights
-          </h3>
-          <p className="mt-2 text-sm text-navy-600">
-            No spam. Just real conversations about how money makes us feel.
-          </p>
-          <div className="mx-auto mt-4 max-w-sm">
-            <NewsletterForm variant="inline" />
-          </div>
-        </div>
+            {/* Quiz CTA */}
+            <div className="quiz-cta">
+              <h3>Discover your Money Persona</h3>
+              <p>
+                Take our free 3-minute quiz and get a personalised snapshot of your emotional
+                money pattern.
+              </p>
+              <Link className="btn btn-primary" href="/quiz">
+                Take the quiz <span className="arrow" aria-hidden="true">→</span>
+              </Link>
+            </div>
 
-        {/* Back */}
-        <div className="mt-8">
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-gold-600 transition-colors hover:text-gold-700"
-          >
-            ← Back to all posts
-          </Link>
+            {/* Share */}
+            <div className="share">
+              <span className="label">Share</span>
+              <button type="button">Copy link</button>
+              <button type="button">X / Twitter</button>
+              <button type="button">Facebook</button>
+            </div>
+
+            {/* Related Posts */}
+            {relatedSlugs.length > 0 && (
+              <div className="related">
+                <h3>Related posts</h3>
+                <div className="related-grid">
+                  {relatedSlugs.map((s) => {
+                    const related = posts[s]
+                    return (
+                      <Link key={s} href={`/blog/${s}`} className="rcard">
+                        <span className="rk">{related.categoryLabel}</span>
+                        <h4>{related.title}</h4>
+                        <p className="rt">{related.readTime} min read</p>
+                      </Link>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Newsletter */}
+            <div className="news-card">
+              <h3>Get weekly emotional money insights</h3>
+              <p>No spam. Just real conversations about how money makes us feel.</p>
+              <div className="form-wrap">
+                <NewsletterForm variant="inline" />
+              </div>
+            </div>
+
+            {/* Back */}
+            <div className="back-link">
+              <Link href="/blog">← Back to all posts</Link>
+            </div>
+          </article>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }

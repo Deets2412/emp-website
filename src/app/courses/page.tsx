@@ -1,376 +1,321 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { NewsletterForm } from '@/components/shared/NewsletterForm'
-import { ALP_STAGES } from '@/lib/constants'
+import { WaitlistForm } from '@/components/shared/WaitlistForm'
 
 export const metadata: Metadata = {
-  title: 'EMP Transformation Program — 12 Weeks to Financial Freedom From the Inside Out',
+  title: 'The Program',
   description:
-    'The only financial psychology program combining Affective Liminal Psychology, an interactive course platform, and a companion mobile app. 12 weeks to change your emotional relationship with money.',
+    'A 12-week course in how you feel about money. A psychology-led program pairing interactive learning with a companion app for noticing your emotions in the moment.',
 }
 
-const programFeatures = {
-  course: [
-    'Weekly video lessons with embedded exercises',
-    'Live Q&A sessions with David & Emme',
-    'Community discussions with your cohort',
-    'Gamified progress tracking',
-    'Personalised learning path based on your Money Persona',
-  ],
-  app: [
-    'Track emotions at point of purchase (in the moment)',
-    'Identify your triggers and patterns automatically',
-    'Practice ALP techniques in real-time',
-    'Daily micro-practices aligned with course content',
-    'See your transformation in data',
-  ],
-}
+const pageStyles = `
+  .tagstrip { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay); border: 1px solid color-mix(in oklch, var(--clay) 35%, transparent); background: var(--clay-wash); padding: 6px 14px; border-radius: 999px; margin-bottom: 22px; }
+  .tagstrip .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--clay); }
 
-const whoIsThisFor = [
-  'You know what you "should" do with money but can\'t stick to it',
-  'Money anxiety feels overwhelming even when you\'re financially stable',
-  'You avoid looking at accounts or bills',
-  'Past financial trauma still affects current decisions',
-  'Couples arguing about money but it\'s not about the numbers',
-]
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .fblock { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 34px; position: relative; }
+  .fblock.span2 { grid-column: 1 / -1; }
+  .fblock .glyph { color: var(--sage-deep); margin-bottom: 18px; }
+  .fblock h3 { font-size: 1.45rem; margin-bottom: 16px; }
+  .fblock .badge { position: absolute; top: 24px; right: 24px; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; padding: 4px 9px; border-radius: 999px; background: var(--sage-wash); color: var(--sage-deep); }
+  .ck { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+  .ck li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.96rem; color: var(--ink-soft); }
+  .ck li .tick { flex: none; margin-top: 3px; color: var(--sage); }
 
-const whatYouGet = [
-  '12 weeks of interactive course content',
-  'EMP companion mobile app (exclusive to participants)',
-  'Live weekly group sessions with David & Emme',
-  'Private cohort community',
-  'Comprehensive workbook (50+ exercises)',
-  'Lifetime access to materials',
-  '6-month alumni support',
-]
+  .stages-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 24px; }
+  .stg { background: var(--paper); padding: 24px 22px; }
+  .stg .wk { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--clay); }
+  .stg h4 { font-size: 1.2rem; margin: 8px 0 8px; }
+  .stg p { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.5; }
+  @media (max-width: 820px) { .stages-row { grid-template-columns: 1fr 1fr; } .feature { grid-template-columns: 1fr; } }
+
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  @media (max-width: 820px) { .twocol { grid-template-columns: 1fr; gap: 32px; } }
+
+  .pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 840px; }
+  .tier { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 38px 34px; display: flex; flex-direction: column; gap: 8px; }
+  .tier.featured { border-color: var(--sage-deep); box-shadow: 0 0 0 1px var(--sage-deep); }
+  .tier .rec { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage-deep); }
+  .tier h3 { font-size: 1.5rem; }
+  .tier .price { font-family: var(--serif); font-size: 2.6rem; line-height: 1; margin: 8px 0 4px; }
+  .tier .price small { font-size: 0.9rem; color: var(--ink-faint); font-family: var(--mono); letter-spacing: 0.04em; }
+  .tier p.desc { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 14px; }
+  .tier .btn { margin-top: auto; align-self: flex-start; }
+  @media (max-width: 680px) { .pricing { grid-template-columns: 1fr; } }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .compare .col { border: 1px solid var(--line); border-radius: 16px; padding: 30px 28px; background: var(--paper); }
+  .compare .col h4 { font-size: 1.2rem; margin-bottom: 16px; }
+  .xk { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .xk li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.94rem; color: var(--ink-soft); }
+  .xk li .m { flex: none; margin-top: 3px; }
+  .m.no { color: var(--clay); } .m.yes { color: var(--sage); }
+  @media (max-width: 680px) { .compare { grid-template-columns: 1fr; } }
+
+  .faq { max-width: 760px; }
+  details.qa { border-bottom: 1px solid var(--line); padding: 22px 0; }
+  details.qa summary { font-family: var(--serif); font-size: 1.18rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+  details.qa summary::-webkit-details-marker { display: none; }
+  details.qa summary .pm { font-family: var(--mono); color: var(--sage-deep); transition: transform 0.2s ease; flex: none; }
+  details.qa[open] summary .pm { transform: rotate(45deg); }
+  details.qa p { font-size: 0.96rem; color: var(--ink-soft); line-height: 1.6; margin-top: 14px; }
+
+  .note-band { background: var(--sage-wash); border: 1px solid color-mix(in oklch, var(--sage-deep) 25%, transparent); border-radius: 14px; padding: 22px 26px; font-size: 0.9rem; color: var(--sage-deep); line-height: 1.55; margin-top: 28px; }
+
+  .waitlist-card { background: var(--ink); color: var(--paper); border-radius: 24px; padding: 60px; text-align: center; }
+  .waitlist-card h2 { color: var(--paper); font-size: clamp(1.9rem, 3.4vw, 2.7rem); margin: 14px auto 16px; max-width: 20ch; }
+  .waitlist-card p { color: oklch(0.82 0.012 80); max-width: 48ch; margin: 0 auto 28px; }
+  .waitlist-card form { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; }
+  .waitlist-card input { flex: 1; min-width: 200px; padding: 0.95em 1.2em; border-radius: 999px; border: 1px solid oklch(0.45 0.01 80); background: oklch(0.32 0.012 70); color: var(--paper); font-family: var(--sans); font-size: 0.95rem; }
+  .waitlist-card input::placeholder { color: oklch(0.66 0.01 80); }
+  .waitlist-card .btn-primary { background: var(--sage); border-color: var(--sage); color: oklch(0.2 0.02 150); }
+  .waitlist-card .btn-primary:hover { background: var(--paper); border-color: var(--paper); }
+  @media (max-width: 560px) { .waitlist-card { padding: 40px 24px; } }
+`
 
 const faqs = [
   {
     q: 'Is this therapy?',
-    a: 'No. This is psychoeducational content using evidence-based frameworks. If you\'re experiencing clinical depression, anxiety, or trauma, please work with a licensed therapist alongside this program.',
+    a: 'No. This is psychoeducational content using established psychological frameworks. It is not therapy and not a substitute for professional mental-health care. If you’re experiencing depression, anxiety or the effects of trauma, please work with a licensed practitioner — this program can sit alongside that, not replace it.',
+    open: true,
+  },
+  {
+    q: 'Is this financial advice?',
+    a: 'No. Nothing here is personal financial advice or a product recommendation. It’s general education about the emotional side of money. For decisions about your finances, please speak with a licensed financial adviser.',
   },
   {
     q: 'Do I need the app?',
-    a: 'The app is included and highly recommended. It\'s what makes the course stick — bringing classroom learning into real-life moments.',
+    a: 'The app is included and recommended — it’s what helps the learning land in real life, by letting you notice feelings at the moment of a decision. It’s optional, though; the course stands on its own.',
   },
   {
     q: 'What if I miss a week?',
-    a: 'All content is recorded. Live sessions are valuable but optional. You can catch up at your own pace.',
+    a: 'All content is recorded and you keep lifetime access. Live sessions are valuable but optional, and you can catch up at your own pace.',
   },
   {
-    q: 'How is this different from therapy?',
-    a: 'Therapy is personalised clinical treatment. This is structured education using psychological frameworks to understand money patterns. They complement each other beautifully.',
-  },
-  {
-    q: 'What tech do I need?',
-    a: 'Computer or tablet for course videos, smartphone for companion app (iOS and Android).',
+    q: 'What do I need to take part?',
+    a: 'A computer or tablet for the course videos, and a smartphone (iOS or Android) for the companion app.',
   },
 ]
 
 export default function CoursesPage() {
   return (
-    <div className="bg-slate-bg">
-      {/* Hero */}
-      <div className="bg-navy-800 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <div className="mb-4 inline-flex rounded-full bg-gold-500/20 px-4 py-1.5 text-sm font-medium text-gold-400">
-            Founding Cohort — Limited Places
-          </div>
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">
-            The EMP Transformation Program
+    <>
+      <style>{pageStyles}</style>
+
+      {/* hero */}
+      <section className="phero">
+        <div className="wrap">
+          <span className="tagstrip">
+            <i className="dot" /> Founding cohort · limited places
+          </span>
+          <h1>
+            A 12-week course in how you <em>feel</em> about money
           </h1>
-          <p className="mt-2 text-xl text-gold-500">
-            12 Weeks to Change Your Emotional Relationship With Money
+          <p className="lead">
+            Not another budgeting course. A structured, psychology-led program that pairs
+            interactive learning with a companion app for noticing your emotions in the moment —
+            built around an emotion-first approach to money.
           </p>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-300">
-            Not another budgeting course. This is the only financial psychology program that
-            combines interactive learning with real-time emotion tracking — powered by Affective
-            Liminal Psychology.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <a
-              href="#apply"
-              className="inline-flex rounded-lg bg-gold-500 px-8 py-3.5 text-base font-semibold text-navy-900 transition-all hover:bg-gold-400"
-            >
-              Apply for Next Cohort
-            </a>
-            <Link
-              href="/how-it-works"
-              className="inline-flex rounded-lg border border-navy-600 px-8 py-3.5 text-base font-semibold text-white transition-colors hover:border-navy-500 hover:bg-navy-700/50"
-            >
-              See How It Works
-            </Link>
+          <div className="cta-row">
+            <a className="btn btn-primary" href="#waitlist">Join the waitlist</a>
+            <Link className="btn btn-ghost" href="/approach">See the approach</Link>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* What Makes This Different */}
-        <div>
-          <h2 className="text-center text-3xl font-bold text-navy-800">
-            What Makes This Different
-          </h2>
-          <div className="mt-10 grid gap-8 lg:grid-cols-3">
-            {/* Interactive Course */}
-            <div className="rounded-2xl border border-navy-100 bg-white p-8">
-              <div className="text-3xl">💻</div>
-              <h3 className="mt-4 text-xl font-semibold text-navy-800">
-                Interactive Course Platform
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {programFeatures.course.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-navy-600">
-                    <span className="mt-0.5 text-gold-500">✓</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Companion App */}
-            <div className="relative rounded-2xl border border-gold-300 bg-white p-8 shadow-lg shadow-gold-500/5">
-              <span className="absolute -top-3 left-6 rounded-full bg-gold-500 px-3 py-0.5 text-xs font-semibold text-navy-900">
-                NEW
+      {/* what makes it different */}
+      <section className="band alt">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow">What&apos;s inside</p>
+            <h2>Three parts, working together</h2>
+          </div>
+          <div className="feature">
+            <div className="fblock">
+              <span className="badge">New</span>
+              <span className="glyph" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                  <rect x="4" y="6" width="22" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M11 25h8M15 21v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
               </span>
-              <div className="text-3xl">📱</div>
-              <h3 className="mt-4 text-xl font-semibold text-navy-800">
-                Companion Mobile App
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {programFeatures.app.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-navy-600">
-                    <span className="mt-0.5 text-gold-500">✓</span>
-                    {f}
-                  </li>
-                ))}
+              <h3>Interactive course platform</h3>
+              <ul className="ck">
+                <li><span className="tick" aria-hidden="true">✓</span> Weekly video lessons with embedded exercises</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Live Q&amp;A sessions with David &amp; Emme</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Discussions with your cohort</li>
+                <li><span className="tick" aria-hidden="true">✓</span> A learning path shaped by your Money Persona</li>
               </ul>
             </div>
-
-            {/* ALP Framework */}
-            <div className="rounded-2xl border border-navy-100 bg-white p-8">
-              <div className="text-3xl">🧠</div>
-              <h3 className="mt-4 text-xl font-semibold text-navy-800">
-                The ALP Framework
-              </h3>
-              <div className="mt-4 space-y-3">
-                {ALP_STAGES.map((stage) => (
-                  <div key={stage.key} className="rounded-lg bg-slate-bg p-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-navy-800">
-                        {stage.label}
-                      </span>
-                      <span className="text-xs text-navy-500">Weeks {stage.weeks}</span>
-                    </div>
-                    <p className="mt-1 text-xs text-navy-600">{stage.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Who This Is For */}
-        <div className="mt-20">
-          <h2 className="text-center text-3xl font-bold text-navy-800">Who This Is For</h2>
-          <div className="mx-auto mt-8 max-w-2xl space-y-4">
-            {whoIsThisFor.map((item) => (
-              <div
-                key={item}
-                className="flex items-start gap-3 rounded-xl border border-navy-100 bg-white p-4"
-              >
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold-100 text-sm text-gold-700">
-                  ✓
-                </span>
-                <span className="text-navy-700">{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* What You Get */}
-        <div className="mt-20">
-          <h2 className="text-center text-3xl font-bold text-navy-800">What You Get</h2>
-          <div className="mx-auto mt-8 max-w-2xl">
-            <div className="rounded-2xl border border-navy-100 bg-white p-8">
-              <ul className="space-y-4">
-                {whatYouGet.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-navy-700">
-                    <span className="mt-0.5 text-gold-500">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* App Showcase */}
-        <div className="mt-20">
-          <h2 className="text-center text-3xl font-bold text-navy-800">
-            Track Emotions. See Patterns. Transform Your Life.
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-navy-600">
-            The EMP Companion App — your pocket coach for money emotions.
-          </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                icon: '⚡',
-                title: 'Quick Check-In',
-                desc: '5 seconds to log: How you feel, what triggered it, what you decided.',
-              },
-              {
-                icon: '📊',
-                title: 'Pattern Recognition',
-                desc: '"You tend to overspend on Friday evenings after work" — automated insights.',
-              },
-              {
-                icon: '🧘',
-                title: 'In-Moment Support',
-                desc: 'Guided breathing and pause exercises before impulse purchases.',
-              },
-              {
-                icon: '📈',
-                title: 'See Your Transformation',
-                desc: 'Anxiety down. Impulse purchases down. Proof of real change in data.',
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="rounded-2xl border border-navy-100 bg-white p-6 text-center transition-all hover:border-gold-300 hover:shadow-lg hover:shadow-gold-500/5"
-              >
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-gold-50 text-3xl">
-                  {feature.icon}
-                </div>
-                <h3 className="mt-4 text-base font-semibold text-navy-800">{feature.title}</h3>
-                <p className="mt-2 text-sm text-navy-600">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-center text-sm text-navy-500">
-            Available exclusively to Transformation Program participants.{' '}
-            <Link href="/app" className="font-medium text-gold-600 hover:text-gold-700">
-              Learn more about the app &rarr;
-            </Link>
-          </p>
-        </div>
-
-        {/* Pricing */}
-        <div className="mt-20" id="apply">
-          <h2 className="text-center text-3xl font-bold text-navy-800">Investment</h2>
-          <p className="mt-2 text-center text-navy-600">
-            Founding cohort pricing. All prices in AUD.
-          </p>
-          <div className="mx-auto mt-8 grid max-w-3xl gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-navy-100 bg-white p-8">
-              <h3 className="text-lg font-semibold text-navy-800">Self-Paced</h3>
-              <p className="mt-1 text-3xl font-bold text-navy-800">$697</p>
-              <p className="mt-2 text-sm text-navy-600">
-                Full course access, companion app, workbook, and community.
-              </p>
-              <button
-                disabled
-                className="mt-6 w-full cursor-not-allowed rounded-lg bg-navy-100 px-4 py-3 text-sm font-semibold text-navy-400"
-              >
-                Join Waitlist
-              </button>
-            </div>
-            <div className="relative rounded-2xl border border-gold-400 bg-white p-8 shadow-lg shadow-gold-500/10">
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gold-500 px-3 py-0.5 text-xs font-semibold text-navy-900">
-                Recommended
+            <div className="fblock">
+              <span className="glyph" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                  <rect x="9" y="4" width="12" height="22" rx="3" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M13 22h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
               </span>
-              <h3 className="text-lg font-semibold text-navy-800">Live Cohort</h3>
-              <p className="mt-1 text-3xl font-bold text-navy-800">$997</p>
-              <p className="mt-2 text-sm text-navy-600">
-                Everything in Self-Paced plus weekly live sessions, real-time Q&A, and
-                accountability partners.
-              </p>
-              <button
-                disabled
-                className="mt-6 w-full cursor-not-allowed rounded-lg bg-navy-100 px-4 py-3 text-sm font-semibold text-navy-400"
-              >
-                Join Waitlist
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Differentiators */}
-        <div className="mt-20 rounded-2xl bg-navy-800 p-8 sm:p-12">
-          <h2 className="text-center text-2xl font-bold text-white">
-            This Is Not Your Typical Money Course
-          </h2>
-          <div className="mx-auto mt-8 grid max-w-3xl gap-8 md:grid-cols-2">
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-navy-400">
-                What We&apos;re Not
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {[
-                  'Not budgeting advice (you\'ve tried that)',
-                  'Not mindset affirmations (too surface-level)',
-                  'Not traditional therapy (we\'re educational)',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-navy-300">
-                    <span className="mt-0.5 text-navy-500">✕</span>
-                    {item}
-                  </li>
-                ))}
+              <h3>Companion mobile app</h3>
+              <ul className="ck">
+                <li><span className="tick" aria-hidden="true">✓</span> Notice how you feel at the point of a decision</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Spot your own triggers and patterns over time</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Practise simple pause techniques in the moment</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Daily micro-practices aligned with each week</li>
               </ul>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-gold-500">
-                What We Are
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {[
-                  'Psychology-first financial transformation',
-                  'Proven methodology with documented results',
-                  'Interactive learning + real-time practice',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-navy-300">
-                    <span className="mt-0.5 text-gold-500">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQs */}
-        <div className="mt-20">
-          <h2 className="text-center text-3xl font-bold text-navy-800">
-            Frequently Asked Questions
-          </h2>
-          <div className="mx-auto mt-8 max-w-3xl space-y-4">
-            {faqs.map((faq) => (
-              <div
-                key={faq.q}
-                className="rounded-2xl border border-navy-100 bg-white p-6"
-              >
-                <h3 className="text-base font-semibold text-navy-800">{faq.q}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-600">{faq.a}</p>
+            <div className="fblock span2">
+              <span className="glyph" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                  <circle cx="15" cy="15" r="11" stroke="currentColor" strokeWidth="1.5" />
+                  <circle cx="15" cy="15" r="4" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+              </span>
+              <h3>How the 12 weeks unfold</h3>
+              <div className="stages-row">
+                <div className="stg"><div className="wk">Weeks 1–2</div><h4>Awareness</h4><p>Gently surface your money story.</p></div>
+                <div className="stg"><div className="wk">Weeks 3–4</div><h4>Examination</h4><p>Question the beliefs underneath it.</p></div>
+                <div className="stg"><div className="wk">Weeks 5–7</div><h4>Embodiment</h4><p>Parts work and reflective practice.</p></div>
+                <div className="stg"><div className="wk">Weeks 8–12</div><h4>Integration</h4><p>Values, relationships and habits.</p></div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* who / what you get */}
+      <section className="band">
+        <div className="wrap twocol">
+          <div>
+            <p className="eyebrow">Who it&apos;s for</p>
+            <h2 style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.4rem)', margin: '14px 0 24px' }}>This might resonate if…</h2>
+            <ul className="ck" style={{ gap: '14px' }}>
+              <li><span className="tick" aria-hidden="true">✓</span> You know what you &ldquo;should&rdquo; do with money but can&apos;t seem to stick to it</li>
+              <li><span className="tick" aria-hidden="true">✓</span> Money worry feels heavy even when things are objectively fine</li>
+              <li><span className="tick" aria-hidden="true">✓</span> You avoid looking at accounts or bills</li>
+              <li><span className="tick" aria-hidden="true">✓</span> Old money experiences still shape how you feel today</li>
+              <li><span className="tick" aria-hidden="true">✓</span> You and a partner keep having the same money argument — and it&apos;s not really about the numbers</li>
+            </ul>
+          </div>
+          <div>
+            <p className="eyebrow">What&apos;s included</p>
+            <h2 style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.4rem)', margin: '14px 0 24px' }}>What you get</h2>
+            <ul className="ck" style={{ gap: '14px' }}>
+              <li><span className="tick" aria-hidden="true">✓</span> 12 weeks of interactive course content</li>
+              <li><span className="tick" aria-hidden="true">✓</span> The companion app (exclusive to participants)</li>
+              <li><span className="tick" aria-hidden="true">✓</span> Live weekly group sessions with David &amp; Emme</li>
+              <li><span className="tick" aria-hidden="true">✓</span> A private cohort community</li>
+              <li><span className="tick" aria-hidden="true">✓</span> A workbook with 50+ reflective exercises</li>
+              <li><span className="tick" aria-hidden="true">✓</span> Lifetime access to materials + 6 months alumni support</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* pricing */}
+      <section className="band alt">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow">Enrolment</p>
+            <h2>Founding cohort pricing</h2>
+            <p className="lead">Two ways to take part. All prices in Australian dollars.</p>
+          </div>
+          <div className="pricing">
+            <div className="tier">
+              <span className="rec">Self-paced</span>
+              <div className="price">$697 <small>AUD</small></div>
+              <p className="desc">Full course access, companion app, workbook and community.</p>
+              <ul className="ck" style={{ marginBottom: '20px' }}>
+                <li><span className="tick" aria-hidden="true">✓</span> All 12 weeks, at your own pace</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Companion app + workbook</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Cohort community access</li>
+              </ul>
+              <a className="btn btn-ghost" href="#waitlist">Join waitlist</a>
+            </div>
+            <div className="tier featured">
+              <span className="rec">Recommended · Live cohort</span>
+              <div className="price">$997 <small>AUD</small></div>
+              <p className="desc">Everything in Self-paced, plus live guidance and accountability.</p>
+              <ul className="ck" style={{ marginBottom: '20px' }}>
+                <li><span className="tick" aria-hidden="true">✓</span> Everything in Self-paced</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Weekly live sessions &amp; real-time Q&amp;A</li>
+                <li><span className="tick" aria-hidden="true">✓</span> Accountability partners</li>
+              </ul>
+              <a className="btn btn-primary" href="#waitlist">Join waitlist</a>
+            </div>
+          </div>
+          <div className="note-band" style={{ maxWidth: '840px' }}>
+            This is an educational program about the psychology of money. It is general in nature,
+            is not financial product advice, and does not consider your personal circumstances. It
+            is also not therapy — see the notes at the foot of the page.
+          </div>
+        </div>
+      </section>
+
+      {/* what it's not */}
+      <section className="band">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow">Honest expectations</p>
+            <h2>What this is — and isn&apos;t</h2>
+          </div>
+          <div className="compare">
+            <div className="col">
+              <h4>What it isn&apos;t</h4>
+              <ul className="xk">
+                <li><span className="m no" aria-hidden="true">✕</span> Budgeting advice (you&apos;ve tried that)</li>
+                <li><span className="m no" aria-hidden="true">✕</span> Surface-level mindset affirmations</li>
+                <li><span className="m no" aria-hidden="true">✕</span> Therapy or clinical treatment</li>
+                <li><span className="m no" aria-hidden="true">✕</span> Personal financial advice or product recommendations</li>
+              </ul>
+            </div>
+            <div className="col">
+              <h4>What it is</h4>
+              <ul className="xk">
+                <li><span className="m yes" aria-hidden="true">✓</span> Psychology-led money education</li>
+                <li><span className="m yes" aria-hidden="true">✓</span> A structured framework, drawn from established approaches</li>
+                <li><span className="m yes" aria-hidden="true">✓</span> Interactive learning paired with real-life practice</li>
+                <li><span className="m yes" aria-hidden="true">✓</span> A calmer, shame-free way to understand your patterns</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* faq */}
+      <section className="band alt">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow">Questions</p>
+            <h2>Good things to ask</h2>
+          </div>
+          <div className="faq">
+            {faqs.map((f) => (
+              <details key={f.q} className="qa" {...(f.open ? { open: true } : {})}>
+                <summary>
+                  {f.q} <span className="pm" aria-hidden="true">+</span>
+                </summary>
+                <p>{f.a}</p>
+              </details>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Waitlist CTA */}
-        <div className="mx-auto mt-20 max-w-xl rounded-2xl bg-navy-800 p-8 text-center sm:p-12">
-          <h2 className="text-2xl font-bold text-white">Join the Waitlist</h2>
-          <p className="mt-3 text-navy-300">
-            Be the first to know when the founding cohort opens. Waitlist members get
-            early access and an exclusive launch discount.
-          </p>
-          <div className="mt-6">
-            <NewsletterForm variant="footer" />
+      {/* waitlist */}
+      <section className="band" id="waitlist">
+        <div className="wrap">
+          <div className="waitlist-card">
+            <p className="eyebrow" style={{ color: 'var(--sage)' }}>Join the waitlist</p>
+            <h2>Be first to hear when the founding cohort opens</h2>
+            <p>
+              Waitlist members get early access and a founding-cohort offer. No spam. Unsubscribe
+              anytime.
+            </p>
+            {/* TODO: wire this form to a real waitlist endpoint (not /api/newsletter/subscribe).
+                For v1 it's a styled, non-functional form matching publish/program.html. */}
+            <WaitlistForm />
           </div>
-          <p className="mt-4 text-xs text-navy-500">
-            No spam. Unsubscribe anytime.
-          </p>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }

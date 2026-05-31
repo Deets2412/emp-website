@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  /* Legacy colors kept for non-home pages */
+  /* DEPRECATED: navy/gold/slate-bg tokens kept for non-restyled legacy pages.
+     Remove once the legacy page restyle PR migrates the last consumers. */
   --color-navy-50: #EEF1F6;
   --color-navy-100: #D5DAE6;
   --color-navy-200: #ABB5CD;
@@ -47,18 +48,47 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Raw-name aliases so inline page-scoped style blocks ported from the
+   static design system work unchanged. The Tailwind v4 color and font
+   namespace remains the source of truth for utility classes
+   (bg-paper, text-ink, font-serif). */
+:root {
+  --paper:        var(--color-paper);
+  --paper-2:      var(--color-paper-2);
+  --paper-3:      var(--color-paper-3);
+  --ink:          var(--color-ink);
+  --ink-soft:     var(--color-ink-soft);
+  --ink-faint:    var(--color-ink-faint);
+  --line:         var(--color-line);
+  --line-strong:  var(--color-line-strong);
+  --sage:         var(--color-sage);
+  --sage-deep:    var(--color-sage-deep);
+  --sage-wash:    var(--color-sage-wash);
+  --clay:         var(--color-clay);
+  --clay-wash:    var(--color-clay-wash);
+  --serif:        var(--font-serif);
+  --sans:         var(--font-sans);
+  --mono:         var(--font-mono);
+  --maxw:         1180px;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--color-paper);
   color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Design system utilities */
+/* Headings + base reset for pages using the class-based system */
+h1, h2, h3, h4, h5 { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; margin: 0; }
+a { color: inherit; text-decoration: none; }
+
+/* Design system utilities (existing) */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.71rem;
@@ -74,7 +104,7 @@ body {
   max-width: 56ch;
 }
 
-/* Pill buttons */
+/* Pill buttons — .em-btn (existing, used by Header/Footer) */
 .em-btn {
   display: inline-flex;
   align-items: center;
@@ -90,34 +120,85 @@ body {
   text-decoration: none;
   white-space: nowrap;
 }
-.em-btn-primary {
-  background: var(--color-ink);
-  color: var(--color-paper);
-}
-.em-btn-primary:hover {
-  background: var(--color-sage-deep);
-  border-color: var(--color-sage-deep);
-}
-.em-btn-ghost {
-  background: transparent;
-  color: var(--color-ink);
-  border-color: var(--color-line-strong);
-}
-.em-btn-ghost:hover {
-  border-color: var(--color-ink);
-}
-.em-btn-sm {
-  padding: 0.6em 1.1em;
-  font-size: 0.85rem;
-}
+.em-btn-primary { background: var(--color-ink); color: var(--color-paper); }
+.em-btn-primary:hover { background: var(--color-sage-deep); border-color: var(--color-sage-deep); }
+.em-btn-ghost { background: transparent; color: var(--color-ink); border-color: var(--color-line-strong); }
+.em-btn-ghost:hover { border-color: var(--color-ink); }
+.em-btn-sm { padding: 0.6em 1.1em; font-size: 0.85rem; }
 
-.em-arrow {
-  display: inline-block;
-  transition: transform 0.18s ease;
+.em-arrow { display: inline-block; transition: transform 0.18s ease; }
+a:hover .em-arrow { transform: translateX(3px); }
+
+/* .btn aliases (NEW) — same rules as .em-btn, named to match
+   publish/*.html so JSX ports work unchanged. */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.55em;
+  font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500;
+  padding: 0.85em 1.5em; border-radius: 999px; border: 1px solid var(--color-ink);
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
 }
-a:hover .em-arrow {
-  transform: translateX(3px);
+.btn-primary { background: var(--color-ink); color: var(--color-paper); }
+.btn-primary:hover { background: var(--color-sage-deep); border-color: var(--color-sage-deep); }
+.btn-ghost { background: transparent; color: var(--color-ink); border-color: var(--color-line-strong); }
+.btn-ghost:hover { border-color: var(--color-ink); }
+.btn-sm { padding: 0.6em 1.1em; font-size: 0.85rem; }
+.arrow { display: inline-block; transition: transform 0.18s ease; }
+a:hover .arrow { transform: translateX(3px); }
+
+/* Layout (NEW) */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+/* Utility compliance strip — class form (NEW). The existing layout.tsx
+   renders the strip inline; this lets ported page templates use the
+   class form too if needed. */
+.utility {
+  background: var(--ink); color: oklch(0.85 0.012 80);
+  font-family: var(--mono); font-size: 0.68rem;
+  letter-spacing: 0.13em; text-transform: uppercase;
 }
+.utility .wrap {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.5em; padding: 8px 32px; flex-wrap: wrap;
+}
+.utility span { display: inline-flex; align-items: center; gap: 0.6em; }
+.utility .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--sage); }
+
+/* Section scaffolding (NEW) */
+section.band { padding: 96px 0; }
+.band.alt {
+  background: var(--paper-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.sec-head { max-width: 62ch; margin-bottom: 52px; }
+.sec-head h2 { font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1.1; margin: 14px 0 18px; }
+.glyph { display: block; }
+.glyph svg { display: block; }
+
+/* Sub-page hero (NEW) */
+.phero { padding: 84px 0 56px; }
+.phero .eyebrow { margin-bottom: 18px; }
+.phero h1 {
+  font-size: clamp(2.5rem, 5.2vw, 4rem);
+  line-height: 1.05; margin: 0 0 22px; max-width: 18ch;
+}
+.phero h1 em { font-style: italic; color: var(--sage-deep); }
+.phero .lead { max-width: 60ch; }
+.phero .cta-row { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+
+/* Generic value cards (NEW) */
+.cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.vcard {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 16px; padding: 34px 30px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.vcard:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.vcard .glyph { color: var(--sage-deep); margin-bottom: 22px; }
+.vcard h3 { font-size: 1.4rem; margin-bottom: 12px; }
+.vcard p { color: var(--ink-soft); font-size: 0.98rem; line-height: 1.6; }
+.band.alt .vcard { background: var(--paper); }
 
 *:focus-visible {
   outline: 2px solid var(--color-sage);
@@ -127,4 +208,13 @@ a:hover .em-arrow {
 ::selection {
   background-color: var(--color-sage-wash);
   color: var(--color-ink);
+}
+
+@media (max-width: 920px) {
+  .cards-3 { grid-template-columns: 1fr; }
+  section.band { padding: 64px 0; }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 20px; }
+  .utility .wrap { gap: 1em; }
 }

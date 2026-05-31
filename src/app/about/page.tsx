@@ -5,261 +5,282 @@ import { NewsletterForm } from '@/components/shared/NewsletterForm'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Meet David and Emme — the hosts of The Emotional Money Podcast. Learn about our mission and the Affective Liminal Psychology framework powering lasting financial transformation.',
+    'Two perspectives, one curiosity. An independent Australian podcast about why we feel the way we do about money — and how understanding those feelings can gently change our relationship with it.',
 }
+
+const pageStyles = `
+  .hosts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .host { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 36px; }
+  .host .htop { display: flex; gap: 20px; align-items: center; margin-bottom: 18px; }
+  .host .avatar { width: 72px; height: 72px; border-radius: 50%; flex: none; background: var(--sage-wash); color: var(--sage-deep); display: grid; place-items: center; font-family: var(--serif); font-size: 1.7rem; font-weight: 600; border: 1px solid color-mix(in oklch, var(--sage-deep) 25%, transparent); }
+  .host h3 { font-size: 1.5rem; }
+  .host .role { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 4px; }
+  .host p { font-size: 0.94rem; color: var(--ink-soft); margin-top: 12px; line-height: 1.62; }
+  .host .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .host .chip { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.04em; padding: 5px 10px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--line); color: var(--ink-soft); }
+  @media (max-width: 820px) { .hosts-grid { grid-template-columns: 1fr; } }
+
+  .modgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 28px; }
+  .mod { background: var(--paper); padding: 24px 22px; }
+  .mod .ab { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--sage-deep); }
+  .mod h4 { font-size: 1.04rem; margin: 8px 0 8px; line-height: 1.2; }
+  .mod p { font-size: 0.84rem; color: var(--ink-soft); line-height: 1.45; }
+  @media (max-width: 820px) { .modgrid { grid-template-columns: 1fr 1fr; } }
+
+  .story { max-width: 68ch; }
+  .story p { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.7; }
+  .story p + p { margin-top: 20px; }
+  .story .pull { font-family: var(--serif); font-size: 1.5rem; color: var(--ink); line-height: 1.4; margin: 32px 0; padding-left: 22px; border-left: 2px solid var(--sage); }
+
+  .promise { background: var(--ink); color: var(--paper); border-radius: 20px; padding: 48px 52px; }
+  .promise .eyebrow { color: var(--sage); }
+  .promise p { font-family: var(--serif); font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.42; margin: 16px 0 0; color: var(--paper); }
+  .promise a { display: inline-flex; align-items: center; gap: 0.5em; margin-top: 26px; font-family: var(--sans); font-size: 0.95rem; color: var(--sage); }
+
+  @media (max-width: 560px) { .promise { padding: 34px 26px; } }
+`
 
 export default function AboutPage() {
   return (
-    <div className="bg-slate-bg py-12 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Hero */}
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-4xl font-bold text-navy-800 sm:text-5xl">Meet Your Hosts</h1>
-          <p className="mt-4 text-lg text-navy-600">
-            Two very different perspectives. One shared mission: helping you understand why you
-            feel the way you do about money — and transforming that relationship using
-            evidence-based psychology.
+    <>
+      <style>{pageStyles}</style>
+
+      {/* hero */}
+      <section className="phero">
+        <div className="wrap">
+          <p className="eyebrow">About the show</p>
+          <h1>Two perspectives, one curiosity</h1>
+          <p className="lead">
+            Emotional Money is an independent Australian podcast about why we feel the way we do
+            about money — and how understanding those feelings can gently change our relationship
+            with it.
           </p>
         </div>
+      </section>
 
-        {/* Host Bios */}
-        <div className="mt-16 grid gap-8 lg:grid-cols-2">
-          {/* David */}
-          <div className="rounded-2xl border border-navy-100 bg-white p-8">
-            <div className="flex items-start gap-6">
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-navy-800 text-xl font-bold text-gold-500">
-                DM
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-navy-800">David</h2>
-                <p className="text-sm text-gold-600">Co-Host &middot; Financial Educator</p>
-              </div>
-            </div>
-            <p className="mt-6 leading-relaxed text-navy-700">
-              With decades spent in the financial services industry, David noticed something
-              that changed everything: the biggest barrier to financial success is never the
-              numbers — it&apos;s the emotions. Fear, shame, guilt, avoidance — these feelings
-              run the show behind every dollar decision.
-            </p>
-            <p className="mt-4 leading-relaxed text-navy-700">
-              David brings real-world financial knowledge and a deep curiosity about why knowing
-              what to do with money and actually doing it are very different things.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {['Behavioural Finance', 'Financial Education', 'Money Psychology'].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-navy-50 px-3 py-1 text-xs font-medium text-navy-700"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+      {/* hosts */}
+      <section className="band alt">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow">Your hosts</p>
+            <h2>Meet David &amp; Emme</h2>
           </div>
-
-          {/* Emme */}
-          <div className="rounded-2xl border border-navy-100 bg-white p-8">
-            <div className="flex items-start gap-6">
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gold-500 text-xl font-bold text-navy-900">
-                EM
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-navy-800">Emme</h2>
-                <p className="text-sm text-gold-600">
-                  Psychology Student &middot; Gen Z Perspective
-                </p>
-              </div>
-            </div>
-            <p className="mt-6 leading-relaxed text-navy-700">
-              At 25, Emme represents a generation navigating unprecedented financial anxiety —
-              from housing affordability to cost-of-living pressures. As a psychology student,
-              she brings a fresh, research-informed lens to the emotional side of money that
-              traditional finance completely ignores.
-            </p>
-            <p className="mt-4 leading-relaxed text-navy-700">
-              Emme is not afraid to ask the questions her generation is thinking but nobody is
-              saying out loud. Her vulnerability and curiosity make complex emotional concepts
-              feel accessible and real.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {['Psychology', 'Gen Z Perspective', 'Emotional Intelligence'].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-gold-50 px-3 py-1 text-xs font-medium text-gold-700"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ALP Approach */}
-        <div className="mt-16 rounded-2xl border border-gold-200 bg-white p-8 sm:p-12">
-          <div className="mx-auto max-w-3xl">
-            <div className="mb-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 text-sm font-medium text-gold-700">
-              Our Methodology
-            </div>
-            <h2 className="text-3xl font-bold text-navy-800">
-              Our Approach: Psychology-First Change
-            </h2>
-            <p className="mt-4 leading-relaxed text-navy-700">
-              While David brings financial education experience and Emme contributes psychology
-              studies and Gen Z perspective, they&apos;re united by one belief: lasting financial
-              change starts with emotions, not spreadsheets.
-            </p>
-            <p className="mt-4 leading-relaxed text-navy-700">
-              We apply evidence-based psychological frameworks — including CBT, ACT, IFS, and
-              attachment theory — to help people understand and transform their emotional
-              relationship with money.
-            </p>
-
-            <div className="mt-8">
-              <h3 className="text-lg font-semibold text-navy-800">Why ALP Works</h3>
-              <p className="mt-2 leading-relaxed text-navy-600">
-                Traditional finance focuses on behaviour change through willpower. ALP changes
-                the emotional relationship FIRST, so aligned behaviour flows naturally.
-              </p>
-            </div>
-
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {[
-                { label: 'CBT', desc: 'Cognitive Behavioural Therapy — reframing unhelpful thought patterns' },
-                { label: 'ACT', desc: 'Acceptance & Commitment Therapy — values-aligned action' },
-                { label: 'IFS', desc: 'Internal Family Systems — understanding your money "parts"' },
-                { label: 'Attachment Theory', desc: 'How early relationships shape financial behaviour' },
-              ].map((framework) => (
-                <div key={framework.label} className="rounded-lg bg-slate-bg p-4">
-                  <span className="text-sm font-semibold text-navy-800">{framework.label}</span>
-                  <p className="mt-1 text-xs text-navy-600">{framework.desc}</p>
+          <div className="hosts-grid">
+            <div className="host">
+              <div className="htop">
+                <div className="avatar" aria-hidden="true">D</div>
+                <div>
+                  <h3>David</h3>
+                  <div className="role">Co-host</div>
                 </div>
-              ))}
+              </div>
+              <p>
+                David has spent years quietly fascinated by one thing: why smart, capable people
+                make emotional decisions with money. He kept noticing the same pattern — that
+                knowing what to do and actually doing it are very different things, and the gap
+                between them is almost always emotional, not technical.
+              </p>
+              <p>
+                He started Emotional Money as a personal project to explore that gap out loud — in
+                plain language, without jargon, and without judgement.
+              </p>
+              <div className="chips">
+                <span className="chip">Behavioural curiosity</span>
+                <span className="chip">Plain language</span>
+                <span className="chip">Lifelong learner</span>
+              </div>
             </div>
+            <div className="host">
+              <div className="htop">
+                <div className="avatar" aria-hidden="true">E</div>
+                <div>
+                  <h3>Emme</h3>
+                  <div className="role">Co-host</div>
+                </div>
+              </div>
+              <p>
+                At 25, Emme represents a generation navigating real financial pressure — housing,
+                cost of living, and the anxiety that comes with it. As a psychology student, she
+                brings a fresh, research-informed lens to the emotional side of money that
+                traditional finance tends to ignore.
+              </p>
+              <p>
+                She isn&apos;t afraid to ask the questions her generation is thinking but nobody
+                says out loud. Her curiosity and openness make the harder feelings feel
+                approachable and real.
+              </p>
+              <div className="chips">
+                <span className="chip">Psychology student</span>
+                <span className="chip">Gen Z lens</span>
+                <span className="chip">Asks the real questions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="mt-8 rounded-xl bg-navy-800 p-6">
-              <p className="text-sm font-medium text-gold-400">Our Promise</p>
-              <p className="mt-2 text-navy-300">
-                We&apos;re not here to tell you what to do with money. You already know that.
-                We&apos;re here to help you understand WHY you&apos;re not doing it — and
-                change that at the deepest level.
+      {/* approach */}
+      <section className="band">
+        <div className="wrap">
+          <div className="sec-head" style={{ maxWidth: '64ch' }}>
+            <p className="eyebrow">Our approach</p>
+            <h2>An emotion-first approach to money</h2>
+            <p className="lead">
+              What unites us is one idea: change how you feel about money first, and steadier
+              choices tend to follow — far more naturally than they ever do through willpower
+              alone. It&apos;s an approach grounded in well-recognised psychology.
+            </p>
+          </div>
+          <p style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-faint)' }}>
+            Drawing on established psychological approaches
+          </p>
+          <p style={{ maxWidth: '64ch', color: 'var(--ink-soft)', fontSize: '0.98rem', margin: '10px 0 4px' }}>
+            Our thinking draws on several well-established approaches — and is informed by
+            Affective Liminal Psychology, a framework for shifting deeply held patterns through
+            feeling rather than force.
+          </p>
+          <div className="modgrid">
+            <div className="mod">
+              <div className="ab">CBT</div>
+              <h4>Cognitive Behavioural Therapy</h4>
+              <p>Noticing and reframing unhelpful thought patterns.</p>
+            </div>
+            <div className="mod">
+              <div className="ab">ACT</div>
+              <h4>Acceptance &amp; Commitment Therapy</h4>
+              <p>Acting in line with your values, not your fear.</p>
+            </div>
+            <div className="mod">
+              <div className="ab">IFS</div>
+              <h4>Internal Family Systems</h4>
+              <p>Understanding your competing money &ldquo;parts&rdquo;.</p>
+            </div>
+            <div className="mod">
+              <div className="ab">—</div>
+              <h4>Attachment theory</h4>
+              <p>How early relationships shape money behaviour.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* promise */}
+      <section className="band">
+        <div className="wrap">
+          <div className="promise">
+            <p className="eyebrow">Our promise</p>
+            <p>
+              We&apos;re not here to tell you what to do with money — you already know that.
+              We&apos;re here to help you understand <em>why</em> you&apos;re not doing it, and to
+              make that gentler to change.
+            </p>
+            <Link href="/approach">
+              More about our approach <span className="arrow">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* story */}
+      <section className="band alt">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow">Why this podcast</p>
+            <h2>How it started</h2>
+          </div>
+          <div className="story">
+            <p>
+              It began with a simple, nagging observation: people who know exactly what they
+              &ldquo;should&rdquo; do with money often can&apos;t bring themselves to do it. The
+              problem is rarely the plan. It&apos;s the feelings — fear, shame, avoidance,
+              self-sabotage — the parts of money nobody seems willing to talk about.
+            </p>
+            <p className="pull">
+              &ldquo;The problem was never the plan. It was the feelings.&rdquo;
+            </p>
+            <p>
+              Then David and Emme started talking. She was studying psychology and open about her
+              own money anxiety; he was fascinated by the emotional patterns underneath financial
+              decisions. In conversation, something clicked — between her emotional awareness and
+              his curiosity about behaviour, they could explore the part of money that usually
+              gets ignored.
+            </p>
+            <p>
+              As they kept talking, a shared way of working took shape: an emotion-first approach
+              that gave their conversations a structure. Emotional Money is where they think out
+              loud about applying that lens to our relationship with money.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* philosophy */}
+      <section className="band">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow">Our philosophy</p>
+            <h2>What we believe</h2>
+          </div>
+          <div className="cards-3">
+            <div className="vcard">
+              <span className="glyph" aria-hidden="true">
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+                  <path d="M17 29C12 24 7 20 7 14a10 10 0 0 1 20 0c0 6-5 10-10 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <h3>Emotion-first change</h3>
+              <p>
+                Understand how you feel about money first. When the feeling shifts, the behaviour
+                tends to follow — without the constant willpower battle.
               </p>
             </div>
-
-            <div className="mt-6">
-              <Link
-                href="/alp-methodology"
-                className="text-sm font-semibold text-gold-600 transition-colors hover:text-gold-700"
-              >
-                Learn more about our approach &rarr;
-              </Link>
+            <div className="vcard">
+              <span className="glyph" aria-hidden="true">
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+                  <circle cx="11" cy="13" r="4" stroke="currentColor" strokeWidth="1.5" />
+                  <circle cx="23" cy="13" r="4" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M5 27c0-3.5 2.7-6 6-6m18 6c0-3.5-2.7-6-6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </span>
+              <h3>No shame, no force</h3>
+              <p>
+                Your money patterns made sense given what you learned. The aim is to update the
+                learning — not to punish yourself for it.
+              </p>
+            </div>
+            <div className="vcard">
+              <span className="glyph" aria-hidden="true">
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+                  <circle cx="17" cy="17" r="13" stroke="currentColor" strokeWidth="1.5" />
+                  <circle cx="17" cy="17" r="6.5" stroke="currentColor" strokeWidth="1.5" />
+                  <circle cx="17" cy="17" r="1.6" fill="currentColor" />
+                </svg>
+              </span>
+              <h3>Grounded in psychology</h3>
+              <p>
+                Built on established approaches — CBT, ACT, IFS and attachment theory — rather
+                than guesswork or quick-fix affirmations.
+              </p>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Origin Story */}
-        <div className="mx-auto mt-16 max-w-3xl">
-          <h2 className="text-center text-3xl font-bold text-navy-800">Why This Podcast?</h2>
-          <div className="mt-8 space-y-6 leading-relaxed text-navy-700">
-            <p>
-              It started with a simple observation. David had been helping clients manage their
-              money for over two decades, but he kept running into the same wall: people who
-              knew exactly what they should be doing with their money — but couldn&apos;t bring
-              themselves to do it.
+      {/* newsletter */}
+      <section className="band alt">
+        <div className="wrap">
+          <div style={{ textAlign: 'center', maxWidth: '560px', margin: '0 auto' }}>
+            <p className="eyebrow">Join the conversation</p>
+            <h2 style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)', margin: '14px 0 14px' }}>
+              Weekly notes on the feelings behind money
+            </h2>
+            <p style={{ color: 'var(--ink-soft)', marginBottom: '24px' }}>
+              A short, practical reflection each week. No spam. Unsubscribe anytime.
             </p>
-            <p>
-              The problem was never the plan. It was the feelings. Fear. Shame. Avoidance.
-              Self-sabotage. The emotions that nobody in finance was willing to talk about.
-            </p>
-            <p>
-              Then David met Emme at a university guest lecture. She was studying psychology and
-              struggling with her own money anxiety — and she wasn&apos;t shy about saying so.
-              In their conversations, something clicked: David had the financial expertise. Emme
-              had the emotional awareness. Together, they could bridge the gap that traditional
-              finance had been ignoring for years.
-            </p>
-            <p>
-              They discovered a psychology-first approach to change — one that doesn&apos;t
-              rely on willpower or shame, but on understanding and transforming the emotions
-              driving financial behaviour. That insight became the foundation of Emotional Money.
-            </p>
+            <NewsletterForm variant="default" />
           </div>
         </div>
-
-        {/* Philosophy */}
-        <div className="mt-16">
-          <h2 className="text-center text-3xl font-bold text-navy-800">Our Philosophy</h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-3">
-            {[
-              {
-                icon: '❤️',
-                title: 'Emotion-First Change',
-                desc: 'Change how you feel about money first. The behaviour changes naturally afterward — no willpower battles required.',
-              },
-              {
-                icon: '🤝',
-                title: 'No Shame, No Force',
-                desc: 'Your money patterns made perfect sense given what you learned. We update the learning, not punish the behaviour.',
-              },
-              {
-                icon: '🧬',
-                title: 'Evidence-Based',
-                desc: 'Built on proven psychological frameworks: CBT, ACT, IFS, and attachment theory. Not guesswork — science.',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl border border-navy-100 bg-white p-6 text-center"
-              >
-                <span className="text-3xl">{item.icon}</span>
-                <h3 className="mt-3 text-lg font-semibold text-navy-800">{item.title}</h3>
-                <p className="mt-2 text-sm text-navy-600">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Trust Signals */}
-        <div className="mt-16 rounded-2xl bg-slate-bg p-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { label: 'Psychology-first approach to money' },
-              { label: 'Evidence-based: CBT, ACT, IFS, Attachment' },
-              { label: 'Australian-made for the Australian context' },
-              { label: 'Educational content — not financial advice' },
-            ].map((signal) => (
-              <div key={signal.label} className="flex items-start gap-2">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-100 text-xs text-gold-700">
-                  ✓
-                </span>
-                <span className="text-sm text-navy-700">{signal.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Newsletter CTA */}
-        <div className="mt-16 rounded-2xl bg-navy-800 p-8 text-center sm:p-12">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            Join the Conversation
-          </h2>
-          <p className="mt-3 text-navy-300">
-            Get weekly insights on understanding your emotional relationship with money.
-          </p>
-          <div className="mx-auto mt-6 max-w-md">
-            <NewsletterForm variant="footer" />
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-8 text-center">
-          <Link
-            href="/episodes"
-            className="text-sm font-medium text-gold-600 transition-colors hover:text-gold-700"
-          >
-            &larr; Start listening to episodes
-          </Link>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }

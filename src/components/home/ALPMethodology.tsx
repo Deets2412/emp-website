@@ -58,7 +58,7 @@ export function ALPMethodology() {
               feel differently about money.
             </p>
             <Link
-              href="/alp-methodology"
+              href="/approach"
               className="mt-6 inline-flex items-center gap-2 border-b pb-0.5 font-medium transition-colors"
               style={{
                 color: 'var(--color-sage-deep)',

@@ -96,6 +96,47 @@ export async function generateMetadata({
   }
 }
 
+const pageStyles = `
+  .ep-crumb { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 22px; }
+  .ep-crumb a { color: var(--sage-deep); transition: color 0.18s ease; }
+  .ep-crumb a:hover { color: var(--ink); }
+  .ep-crumb .sep { color: var(--line-strong); }
+
+  .ep-pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay); border: 1px solid color-mix(in oklch, var(--clay) 35%, transparent); background: var(--clay-wash); padding: 6px 14px; border-radius: 999px; margin-bottom: 20px; }
+
+  .ep-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 20px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  .ep-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--line-strong); flex: none; }
+
+  .player { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+  .player .stage { aspect-ratio: 16 / 9; display: grid; place-items: center; background: var(--paper-3); border-bottom: 1px solid var(--line); }
+  .player .pcore { text-align: center; color: var(--ink-soft); }
+  .player .pbtn { width: 64px; height: 64px; border-radius: 50%; background: var(--sage-wash); color: var(--sage-deep); display: grid; place-items: center; margin: 0 auto 16px; border: 1px solid color-mix(in oklch, var(--sage-deep) 25%, transparent); }
+  .player .pnote { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .player .links { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; padding: 18px 26px; }
+  .player .links .lbl { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); }
+  .player .links a { font-size: 0.92rem; color: var(--ink-soft); transition: color 0.18s ease; }
+  .player .links a:hover { color: var(--sage-deep); }
+
+  .ep-about { max-width: 68ch; }
+  .ep-about p { font-size: 1.08rem; color: var(--ink-soft); line-height: 1.7; }
+
+  .notes-card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 38px 36px; }
+  .notes-card .nlist { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+  .notes-card .nlist li { display: flex; gap: 14px; align-items: flex-start; font-size: 0.98rem; color: var(--ink-soft); line-height: 1.55; }
+  .notes-card .nlist .num { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--sage-wash); color: var(--sage-deep); font-family: var(--mono); font-size: 0.72rem; font-weight: 500; margin-top: 1px; }
+
+  .quiz-card { background: var(--ink); color: var(--paper); border-radius: 24px; padding: 56px 48px; text-align: center; }
+  .quiz-card .eyebrow { color: var(--sage); margin-bottom: 14px; }
+  .quiz-card h2 { color: var(--paper); font-size: clamp(1.7rem, 3vw, 2.3rem); margin: 0 auto 14px; max-width: 18ch; }
+  .quiz-card p { color: oklch(0.82 0.012 80); max-width: 46ch; margin: 0 auto 28px; }
+  .quiz-card .btn-primary { background: var(--sage); border-color: var(--sage); color: oklch(0.2 0.02 150); }
+  .quiz-card .btn-primary:hover { background: var(--paper); border-color: var(--paper); }
+  @media (max-width: 560px) { .quiz-card { padding: 40px 24px; } }
+
+  .back-link { display: inline-flex; align-items: center; gap: 0.5em; font-family: var(--sans); font-size: 0.95rem; color: var(--sage-deep); }
+  .back-link:hover { color: var(--ink); }
+`
+
 export default async function EpisodePage({
   params,
 }: {
@@ -105,28 +146,27 @@ export default async function EpisodePage({
   const episode = getEpisode(slug)
 
   return (
-    <div className="bg-slate-bg py-12 sm:py-16">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav className="mb-6 text-sm text-navy-500">
-          <Link href="/episodes" className="transition-colors hover:text-gold-600">
-            Episodes
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-navy-700">Episode {episode.episodeNumber}</span>
-        </nav>
+    <>
+      <style>{pageStyles}</style>
 
-        {/* Episode Header */}
-        <div className="mb-8">
-          <div className="mb-3 inline-flex rounded-full bg-gold-50 px-3 py-1 text-sm font-medium text-gold-700">
-            {episode.pillarLabel}
-          </div>
-          <h1 className="text-3xl font-bold text-navy-800 sm:text-4xl">{episode.title}</h1>
-          <div className="mt-4 flex items-center gap-4 text-sm text-navy-500">
+      {/* hero */}
+      <section className="phero">
+        <div className="wrap">
+          {/* Breadcrumb */}
+          <nav className="ep-crumb">
+            <Link href="/episodes">Episodes</Link>
+            <span className="sep">/</span>
             <span>Episode {episode.episodeNumber}</span>
-            <span className="h-1 w-1 rounded-full bg-navy-300" />
+          </nav>
+
+          <span className="ep-pill">{episode.pillarLabel}</span>
+          <h1>{episode.title}</h1>
+
+          <div className="ep-meta">
+            <span>Episode {episode.episodeNumber}</span>
+            <span className="dot" aria-hidden="true" />
             <span>{episode.duration} min</span>
-            <span className="h-1 w-1 rounded-full bg-navy-300" />
+            <span className="dot" aria-hidden="true" />
             <span>
               {new Date(episode.publishedAt).toLocaleDateString('en-AU', {
                 day: 'numeric',
@@ -136,84 +176,92 @@ export default async function EpisodePage({
             </span>
           </div>
         </div>
+      </section>
 
-        {/* Player Placeholder */}
-        <div className="mb-8 overflow-hidden rounded-2xl border border-navy-200 bg-white">
-          <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-navy-700 to-navy-900">
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gold-500/20">
-                <svg className="h-8 w-8 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+      {/* player */}
+      <section className="band alt">
+        <div className="wrap">
+          <div className="player">
+            <div className="stage">
+              <div className="pcore">
+                <div className="pbtn" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                <p className="pnote">Video player coming at launch</p>
               </div>
-              <p className="text-sm font-medium text-navy-300">Video player coming at launch</p>
+            </div>
+
+            {/* Platform Links */}
+            <div className="links">
+              <span className="lbl">Listen on</span>
+              <a href="#">YouTube</a>
+              <a href="#">Spotify</a>
+              <a href="#">Apple Podcasts</a>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Platform Links */}
-          <div className="flex items-center gap-4 border-t border-navy-100 px-6 py-4">
-            <span className="text-sm font-medium text-navy-600">Listen on:</span>
-            <a href="#" className="text-sm text-navy-500 transition-colors hover:text-gold-600">
-              YouTube
-            </a>
-            <a href="#" className="text-sm text-navy-500 transition-colors hover:text-gold-600">
-              Spotify
-            </a>
-            <a href="#" className="text-sm text-navy-500 transition-colors hover:text-gold-600">
-              Apple Podcasts
-            </a>
+      {/* about this episode */}
+      <section className="band">
+        <div className="wrap">
+          <div className="sec-head" style={{ marginBottom: '24px' }}>
+            <p className="eyebrow">About this episode</p>
+            <h2>What it&apos;s about</h2>
+          </div>
+          <div className="ep-about">
+            <p>{episode.description}</p>
           </div>
         </div>
+      </section>
 
-        {/* Description */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-navy-800">About This Episode</h2>
-          <p className="mt-3 leading-relaxed text-navy-700">{episode.description}</p>
-        </div>
-
-        {/* Show Notes */}
-        {episode.showNotes.length > 0 && (
-          <div className="mb-8 rounded-2xl border border-navy-100 bg-white p-6">
-            <h2 className="text-xl font-semibold text-navy-800">What We Cover</h2>
-            <ul className="mt-4 space-y-3">
-              {episode.showNotes.map((note, i) => (
-                <li key={i} className="flex items-start gap-3 text-navy-700">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-100 text-xs font-semibold text-gold-700">
-                    {i + 1}
-                  </span>
-                  {note}
-                </li>
-              ))}
-            </ul>
+      {/* show notes */}
+      {episode.showNotes.length > 0 && (
+        <section className="band alt">
+          <div className="wrap">
+            <div className="sec-head" style={{ marginBottom: '28px' }}>
+              <p className="eyebrow">In this episode</p>
+              <h2>What we cover</h2>
+            </div>
+            <div className="notes-card">
+              <ul className="nlist">
+                {episode.showNotes.map((note, i) => (
+                  <li key={i}>
+                    <span className="num" aria-hidden="true">{i + 1}</span>
+                    {note}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        )}
+        </section>
+      )}
 
-        {/* Quiz CTA */}
-        <div className="rounded-2xl bg-navy-800 p-8 text-center">
-          <h3 className="text-xl font-bold text-white">
-            Discover your Money Persona
-          </h3>
-          <p className="mt-2 text-navy-300">
-            Take our free 3-minute quiz to find out which emotional money pattern drives your decisions.
-          </p>
-          <Link
-            href="/quiz"
-            className="mt-4 inline-flex rounded-lg bg-gold-500 px-6 py-3 text-sm font-semibold text-navy-900 transition-colors hover:bg-gold-400"
-          >
-            Take the Quiz
-          </Link>
-        </div>
+      {/* quiz cta */}
+      <section className="band">
+        <div className="wrap">
+          <div className="quiz-card">
+            <p className="eyebrow">Where to start</p>
+            <h2>Discover your Money Persona</h2>
+            <p>
+              Take our free 3-minute quiz to find out which emotional money pattern drives your
+              decisions.
+            </p>
+            <Link className="btn btn-primary" href="/quiz">
+              Take the quiz
+            </Link>
+          </div>
 
-        {/* Back Link */}
-        <div className="mt-8">
-          <Link
-            href="/episodes"
-            className="text-sm font-medium text-gold-600 transition-colors hover:text-gold-700"
-          >
-            &larr; Back to all episodes
-          </Link>
+          {/* Back Link */}
+          <div style={{ marginTop: '36px' }}>
+            <Link href="/episodes" className="back-link">
+              <span className="arrow" aria-hidden="true">&larr;</span> Back to all episodes
+            </Link>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }

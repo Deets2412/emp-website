@@ -97,92 +97,147 @@ const episodes = [
 ]
 
 const alpStageColors: Record<string, string> = {
-  Awareness: 'bg-blue-50 text-blue-700',
-  Examination: 'bg-purple-50 text-purple-700',
-  Embodiment: 'bg-rose-50 text-rose-700',
-  Integration: 'bg-emerald-50 text-emerald-700',
+  Awareness: 'stage-sage',
+  Examination: 'stage-clay',
+  Embodiment: 'stage-sage',
+  Integration: 'stage-clay',
 }
+
+const pageStyles = `
+  .filterbar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .filter { font-family: var(--sans); font-size: 0.88rem; font-weight: 500; padding: 0.55em 1.2em; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink-soft); cursor: pointer; transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease; }
+  .filter:hover { border-color: var(--ink); color: var(--ink); }
+  .filter.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+  .ep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 920px) { .ep-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .ep-grid { grid-template-columns: 1fr; } }
+
+  .ep-card { display: flex; flex-direction: column; overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .ep-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+
+  .ep-thumb { position: relative; aspect-ratio: 16 / 9; background: var(--ink); display: grid; place-items: center; }
+  .ep-thumb .epn { font-family: var(--serif); font-size: 2rem; font-weight: 500; color: var(--paper); letter-spacing: -0.01em; }
+  .ep-thumb .dur { position: absolute; bottom: 10px; right: 10px; font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 999px; background: color-mix(in oklch, var(--ink) 70%, transparent); color: var(--paper); }
+
+  .ep-body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+  .ep-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .ep-tag { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper-2); color: var(--ink-soft); }
+  .ep-tag.stage-sage { background: var(--sage-wash); border-color: color-mix(in oklch, var(--sage-deep) 25%, transparent); color: var(--sage-deep); }
+  .ep-tag.stage-clay { background: var(--clay-wash); border-color: color-mix(in oklch, var(--clay) 35%, transparent); color: var(--clay); }
+
+  .ep-card h2 { font-size: 1.2rem; line-height: 1.28; margin-bottom: 10px; transition: color 0.18s ease; }
+  .ep-card:hover h2 { color: var(--sage-deep); }
+  .ep-desc { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ep-meta { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .ep-bestfor { font-size: 0.82rem; color: var(--ink-soft); }
+  .ep-bestfor b { font-weight: 600; color: var(--ink); }
+  .ep-date { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-top: 8px; }
+
+  .note-band { background: var(--sage-wash); border: 1px solid color-mix(in oklch, var(--sage-deep) 25%, transparent); border-radius: 14px; padding: 22px 26px; font-size: 0.9rem; color: var(--sage-deep); line-height: 1.6; max-width: 760px; }
+`
 
 export default function EpisodesPage() {
   return (
-    <div className="bg-slate-bg py-12 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold text-navy-800 sm:text-5xl">Episodes</h1>
-          <p className="mt-4 text-lg text-navy-600">
-            Every week, David and Emme explore a different dimension of your emotional
-            relationship with money. Each episode is tagged to ALP stages and Money Personas
-            so you can find exactly what you need.
+    <>
+      <style>{pageStyles}</style>
+
+      {/* hero */}
+      <section className="phero">
+        <div className="wrap">
+          <p className="eyebrow">The podcast</p>
+          <h1>
+            Every <em>episode</em>, by feeling
+          </h1>
+          <p className="lead">
+            Every week, David and Emme explore a different dimension of your emotional relationship
+            with money. Each episode is tagged by theme and Money Persona, so you can find exactly
+            what you need.
           </p>
         </div>
+      </section>
 
-        {/* Filters */}
-        <div className="mt-8 flex flex-wrap gap-2">
-          <button className="rounded-full bg-navy-800 px-4 py-2 text-sm font-medium text-white">
-            All Episodes
-          </button>
-          {CONTENT_PILLARS.map((pillar) => (
-            <button
-              key={pillar.value}
-              className="rounded-full border border-navy-200 bg-white px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:border-gold-400 hover:text-gold-700"
-            >
-              {pillar.label}
-            </button>
-          ))}
+      {/* episodes */}
+      <section className="band alt">
+        <div className="wrap">
+          <div className="sec-head" style={{ marginBottom: '0' }}>
+            <p className="eyebrow">Browse the show</p>
+            <h2>All episodes</h2>
+          </div>
+
+          {/* Filters */}
+          <div className="filterbar">
+            <button className="filter is-active">All Episodes</button>
+            {CONTENT_PILLARS.map((pillar) => (
+              <button key={pillar.value} className="filter">
+                {pillar.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Episode Grid */}
+          <div className="ep-grid" style={{ marginTop: '40px' }}>
+            {episodes.map((ep) => (
+              <Link key={ep.slug} href={`/episodes/${ep.slug}`} className="ep-card">
+                {/* Thumbnail */}
+                <div className="ep-thumb">
+                  <span className="epn">EP {ep.episodeNumber}</span>
+                  <span className="dur">{ep.duration} min</span>
+                </div>
+
+                {/* Content */}
+                <div className="ep-body">
+                  <div className="ep-tags">
+                    <span className="ep-tag">{ep.pillarLabel}</span>
+                    <span className={`ep-tag ${alpStageColors[ep.alpStage] || ''}`}>
+                      {ep.alpStage}
+                    </span>
+                  </div>
+                  <h2>{ep.title}</h2>
+                  <p className="ep-desc">{ep.description}</p>
+                  <div className="ep-meta">
+                    <p className="ep-bestfor">
+                      <b>Best for:</b> {ep.bestFor}
+                    </p>
+                    <p className="ep-date">
+                      {new Date(ep.publishedAt).toLocaleDateString('en-AU', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* Episode Grid */}
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {episodes.map((ep) => (
-            <Link
-              key={ep.slug}
-              href={`/episodes/${ep.slug}`}
-              className="group overflow-hidden rounded-2xl border border-navy-100 bg-white transition-all hover:border-gold-300 hover:shadow-lg hover:shadow-gold-500/5"
-            >
-              {/* Thumbnail */}
-              <div className="relative aspect-video bg-navy-100">
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-navy-700 to-navy-900">
-                  <span className="text-3xl font-bold text-gold-500">EP {ep.episodeNumber}</span>
-                </div>
-                <div className="absolute bottom-2 right-2 rounded bg-navy-900/80 px-2 py-0.5 text-xs font-medium text-white">
-                  {ep.duration} min
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-5">
-                {/* Tags row */}
-                <div className="mb-3 flex flex-wrap gap-1.5">
-                  <span className="rounded-full bg-gold-50 px-2.5 py-0.5 text-xs font-medium text-gold-700">
-                    {ep.pillarLabel}
-                  </span>
-                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${alpStageColors[ep.alpStage] || 'bg-navy-50 text-navy-700'}`}>
-                    {ep.alpStage}
-                  </span>
-                </div>
-                <h2 className="text-lg font-semibold leading-snug text-navy-800 transition-colors group-hover:text-gold-600">
-                  {ep.title}
-                </h2>
-                <p className="mt-2 line-clamp-2 text-sm text-navy-600">{ep.description}</p>
-                {/* Persona & concepts */}
-                <div className="mt-3 space-y-1">
-                  <p className="text-xs text-navy-500">
-                    <span className="font-medium">Best for:</span> {ep.bestFor}
-                  </p>
-                </div>
-                <p className="mt-2 text-xs text-navy-400">
-                  {new Date(ep.publishedAt).toLocaleDateString('en-AU', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                  })}
-                </p>
-              </div>
-            </Link>
-          ))}
+      {/* cta */}
+      <section className="band">
+        <div className="wrap">
+          <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+            <p className="eyebrow">Where to start</p>
+            <h2 style={{ fontSize: 'clamp(1.9rem, 3.4vw, 2.6rem)', margin: '14px 0 16px' }}>
+              Not sure which episode is for you?
+            </h2>
+            <p style={{ color: 'var(--ink-soft)', marginBottom: '28px' }}>
+              Take the free quiz to discover your Money Persona, then come back for the episodes
+              that speak to it. Everything here is general education — not therapy, and not financial
+              advice.
+            </p>
+            <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link className="btn btn-primary" href="/quiz">
+                Take the free quiz
+              </Link>
+              <Link className="btn btn-ghost" href="/courses">
+                Explore the program
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }
